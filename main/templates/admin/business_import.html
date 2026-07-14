@@ -1,0 +1,78 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+<h1>Bulk Business Import</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <p><strong>State</strong></p>
+
+    <select name="state">
+
+        {% for state in states %}
+
+        <option value="{{ state.id }}">
+
+            {{ state.name }}
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <p><strong>City</strong></p>
+
+    <select name="city">
+
+        {% for city in cities %}
+
+        <option value="{{ city.id }}">
+
+            {{ city.name }}
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <p><strong>Category</strong></p>
+
+    <select name="category">
+
+        {% for category in categories %}
+
+        <option value="{{ category.id }}">
+
+            {{ category.name }}
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <p><strong>Excel File</strong></p>
+
+    <input type="file" name="excel">
+
+    <br><br>
+
+    <button type="submit">
+
+        Import
+
+    </button>
+
+</form>
+
+{% endblock content %}

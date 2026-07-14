@@ -1,0 +1,135 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="pt-28 pb-16" style="background-color: #C0DFEE;">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <span class="inline-block bg-white/70 text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Blog</span>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">Fire Safety Knowledge Hub</h1>
+    <p class="mt-4 text-base md:text-lg text-gray-700 max-w-2xl mx-auto">Expert guides, compliance updates, and tips to keep your property safe and legally compliant.</p>
+  </div>
+</section>
+
+{% if featured_article %}
+<!-- Featured post -->
+<section class="py-12 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl overflow-hidden border border-gray-100">
+      <a href="{% url 'blog_detail' featured_article.slug %}" class="flex flex-col lg:flex-row group">
+        <div class="lg:w-1/2 h-64 lg:h-auto overflow-hidden">
+          {% if featured_article.image %}
+          <img decoding="async" loading="lazy" src="{{ featured_article.image.url }}" alt="{{ featured_article.title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          {% else %}
+          <div class="w-full h-full bg-gradient-to-br from-[#C0DFEE] to-gray-100 flex items-center justify-center">
+            <svg class="w-20 h-20 text-[#A20513]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+          </div>
+          {% endif %}
+        </div>
+        <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+          <span class="inline-block bg-[#A20513]/10 text-[#A20513] px-3 py-1 rounded-full text-xs font-medium mb-3">Featured Article</span>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-[#A20513] transition">{{ featured_article.title }}</h2>
+          <p class="text-gray-600 mt-3 leading-relaxed">{{ featured_article.excerpt|default:featured_article.meta_description|truncatewords:30 }}</p>
+          <div class="flex items-center gap-3 mt-4 text-sm text-gray-500">
+            <span>{{ featured_article.created_at|date:"M d, Y" }}</span>
+            {% if featured_article.category %}
+            <span>&bull;</span>
+            <span>{{ featured_article.category.name|capfirst }}</span>
+            {% endif %}
+          </div>
+          <span class="mt-5 inline-flex items-center gap-2 text-[#A20513] group-hover:text-rose-700 font-semibold text-sm">Read Full Article <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Categories -->
+<section class="pb-8 bg-white">
+  <div class="max-w-7xl mx-auto px-4 flex flex-wrap gap-3">
+    <a href="{% url "blog" %}" class="px-4 sm:px-5 py-2 text-sm font-medium border border-gray-200 rounded-full transition
+      {% if not active_category %}bg-[#A20513] text-white border-[#A20513]{% else %}text-gray-600 hover:bg-gray-100{% endif %}">All</a>
+    {% for blogcategory in blogcategories %}
+    <a href="{% url 'blog' %}?category={{ blogcategory.slug }}" class="px-4 sm:px-5 py-2 text-sm font-medium border border-gray-200 rounded-full transition
+      {% if active_category == blogcategory.slug %}bg-[#A20513] text-white border-[#A20513]{% else %}text-gray-600 hover:bg-gray-100{% endif %}">{{ blogcategory.name|capfirst }}</a>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Blog grid -->
+<section class="pb-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    {% if blogs %}
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for blog in blogs %}
+      <article class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition group">
+        <a href="{% url 'blog_detail' blog.slug %}" class="block overflow-hidden">
+          {% if blog.image %}
+          <img decoding="async" loading="lazy" src="{{ blog.image.url }}" alt="{{ blog.title }}" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
+          {% else %}
+          <div class="h-44 bg-gradient-to-br from-[#C0DFEE] to-gray-100 flex items-center justify-center">
+            <svg class="w-12 h-12 text-[#A20513]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+          </div>
+          {% endif %}
+        </a>
+        <div class="p-5">
+          {% if blog.category %}
+          <a href="{% url 'blog' %}?category={{ blog.category.slug }}" class="inline-block bg-[#C0DFEE] text-gray-800 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-[#A20513] hover:text-white transition">{{ blog.category.name|capfirst }}</a>
+          {% endif %}
+          <h3 class="text-lg font-bold text-gray-900 mt-3">
+            <a href="{% url 'blog_detail' blog.slug %}" class="hover:text-[#A20513] transition">{{ blog.title }}</a>
+          </h3>
+          <p class="text-sm text-gray-600 mt-2 line-clamp-2">{{ blog.excerpt|default:blog.meta_description|truncatewords:25 }}</p>
+          <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100 text-xs text-gray-400">
+            <span>{{ blog.created_at|date:"M d, Y" }}</span>
+            <a href="{% url 'blog_detail' blog.slug %}" class="text-[#A20513] hover:text-rose-700 font-semibold">Read More</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex items-center justify-center gap-2 mt-12">
+      {% if blogs.has_previous %}
+      <a href="?{% if active_category %}category={{ active_category }}&{% endif %}page={{ blogs.previous_page_number }}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 border border-gray-200 transition">Prev</a>
+      {% else %}
+      <span class="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 border border-gray-100 cursor-not-allowed">Prev</span>
+      {% endif %}
+
+      {% for num in blogs.paginator.page_range %}
+      <a href="?{% if active_category %}category={{ active_category }}&{% endif %}page={{ num }}" class="w-9 h-9 flex items-center justify-center rounded-lg text-sm font-medium transition
+        {% if blogs.number == num %}bg-[#A20513] text-white{% else %}text-gray-700 hover:bg-gray-100 border border-gray-200{% endif %}">{{ num }}</a>
+      {% endfor %}
+
+      {% if blogs.has_next %}
+      <a href="?{% if active_category %}category={{ active_category }}&{% endif %}page={{ blogs.next_page_number }}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 border border-gray-200 transition">Next</a>
+      {% else %}
+      <span class="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 border border-gray-100 cursor-not-allowed">Next</span>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="text-center py-20">
+      <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+      <h3 class="text-lg font-bold text-gray-600">No articles found</h3>
+      <p class="text-sm text-gray-400 mt-1">Check back soon for new articles or try a different category.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16" style="background-color: #C0DFEE;">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Ready to Find a Verified Fire Safety Contractor?</h2>
+    <p class="mt-3 text-gray-700 max-w-xl mx-auto">Browse our network of verified professionals or call us directly for personalised assistance.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="{% url "find_contractors" %}" class="px-8 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Find Contractors</a>
+      <a href="tel:+916202005500" class="px-8 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Call +91 6202005500</a>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

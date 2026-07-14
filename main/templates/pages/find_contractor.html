@@ -1,0 +1,384 @@
+
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Hero -->
+<section class="pt-28 pb-16" style="background-color: #C0DFEE;">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">Verified Contractors Near You</h1>
+    <p class="mt-3 text-base md:text-lg text-gray-700 max-w-2xl mx-auto">Browse from our network of trusted and verified fire safety providers across India. Every contractor listed is thoroughly vetted for quality and reliability.</p>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-4 sm:gap-6 text-sm font-medium text-gray-700">
+      <span class="inline-flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full"><svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>100% Verified Providers</span>
+      <span class="inline-flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full"><svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>ISO Certified Fleet</span>
+      <span class="inline-flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full"><svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Transparent Pricing</span>
+      <span class="inline-flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full"><svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>4.8★ Average Rating</span>
+      <span class="inline-flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full"><svg class="w-4 h-4 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>500+ Contractors Available</span>
+    </div>
+  </div>
+</section>
+
+<!-- Main content area with sidebar -->
+{% comment %} <section class="py-8 bg-gray-50 min-h-[600px]">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-8">
+
+    <!-- Sidebar Filters -->
+    <aside class="w-full lg:w-72 shrink-0">
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 lg:sticky lg:top-28">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-lg font-bold text-gray-900">Filters</h2>
+          <button onclick="resetFilters()" class="text-sm text-[#A20513] hover:text-rose-700 font-medium">Reset All</button>
+        </div>
+
+        <div class="mb-5">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="filter-verified" checked onchange="filterContractors()" class="w-4 h-4 accent-[#A20513]">
+            <span class="text-sm text-gray-700 font-medium">Show verified only</span>
+          </label>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-xs text-gray-500 mb-1.5 font-medium">Location</label>
+          <select id="filter-location" onchange="filterContractors()" class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-[#A20513] focus:border-[#A20513] outline-none bg-white">
+            <option value="">Select city...</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Pune">Pune</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Ahmedabad">Ahmedabad</option>
+          </select>
+        </div>
+
+        <div class="mb-5">
+          <label class="block text-xs text-gray-500 mb-1.5 font-medium">Category</label>
+          <select id="filter-service" onchange="filterContractors()" class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-[#A20513] focus:border-[#A20513] outline-none bg-white">
+            <option value="">Select service...</option>
+            <option value="Fire Alarm">Fire Alarm</option>
+            <option value="Fire Extinguisher">Fire Extinguisher</option>
+            <option value="Fire Audit">Fire Audit</option>
+            <option value="Hydrant System">Hydrant System</option>
+            <option value="Sprinkler System">Sprinkler System</option>
+            <option value="NOC Assistance">NOC Assistance</option>
+            <option value="Maintenance">Maintenance</option>
+          </select>
+        </div>
+
+        <button onclick="filterContractors()" class="w-full px-4 py-2.5 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl text-sm transition">Apply Filters</button>
+      </div>
+    </aside>
+
+    <!-- Right Column -->
+    <div class="flex-1 min-w-0">
+
+      <!-- Results header -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <p class="text-sm text-gray-500"><span id="result-summary">Showing 0 - 0 of 0 verified businesses</span></p>
+        <div class="flex items-center gap-4 text-sm">
+          <span class="text-[#A20513] font-semibold border-b-2 border-[#A20513] pb-1">All verified</span>
+          <span class="text-gray-400">|</span>
+          <span class="text-gray-500 pb-1">Updated today</span>
+        </div>
+      </div>
+
+      <!-- Contractor grid -->
+      <div id="contractor-grid" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+
+      <!-- Pagination -->
+      <div id="pagination" class="hidden flex items-center justify-center gap-2 mt-10"></div>
+
+      <!-- Empty state -->
+      <div id="no-results" class="hidden text-center py-20">
+        <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <h3 class="text-lg font-bold text-gray-600">No contractors found</h3>
+        <p class="text-sm text-gray-400 mt-1 max-w-md mx-auto">Try adjusting your filters or search criteria to discover verified fire safety experts in your area.</p>
+      </div>
+
+    </div>
+  </div>
+</section> {% endcomment %}
+<!-- Main Content with Sidebar -->
+<section class="py-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row gap-6">
+
+            <!-- Sidebar Filters -->
+            <aside class="w-full lg:w-72 shrink-0">
+                <form action="{% url 'find_contractors' %}" method="GET"> 
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sticky top-24">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-gray-900">Filters</h3>
+                        <button type="reset" class="text-sm text-[#A20513] hover:text-rose-700 font-medium">Reset All</button>
+                    </div>
+
+                    <!-- Verified Badge -->
+                    <div class="mb-4 p-3 bg-green-50 rounded-xl border border-green-100">
+                        <span class="inline-flex items-center gap-1.5 text-green-700 text-xs font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            Showing only verified businesses
+                        </span>
+                    </div>
+
+                    <!-- Location Filter -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Location</label>
+                        <select id="location-select" name="city" class="hidden">
+                            <option value="">Select city</option>
+                            {% for city in cities %}
+                            <option value="{{city.slug}}" {% if city.slug == city_slug %}selected{% endif %}>{{city.name|capfirst}}</option>
+                            {% endfor %}
+                        </select>
+                        <div id="location-dropdown" class="relative">
+                            <input id="location-input" type="text" placeholder="Select city..." autocomplete="off" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#A20513] focus:border-[#A20513] outline-none">
+                            <div id="location-list" class="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-xl shadow-lg max-h-40 overflow-y-auto hidden"></div>
+                        </div>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Category</label>
+                        <select id="rental_item-select" name="rental_item" class="hidden">
+                            <option value="">All Categories</option>
+                            {% for category in Categories %}
+                            <option value="{{category.slug}}" {% if category.slug == service_slug %}selected{% endif %}>{{category.name|capfirst}}</option>
+                            {% endfor %}
+                        </select>
+                        <div id="rental_item-dropdown" class="relative">
+                            <input id="rental_item-input" type="text" placeholder="Select category..." autocomplete="off" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#A20513] focus:border-[#A20513] outline-none">
+                            <div id="rental_item-list" class="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-xl shadow-lg max-h-40 overflow-y-auto hidden"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full px-4 py-2.5 bg-[#A20513] hover:bg-rose-700 text-white font-medium rounded-xl text-sm transition">Apply Filters</button>
+                </div>
+            </form>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="flex-1 min-w-0">
+
+                <!-- Results Summary -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                    <div>
+                        <p class="text-sm text-gray-600">
+    Showing
+    <span class="font-semibold text-gray-900">
+        {{ businesses.start_index }} - {{ businesses.end_index }}
+    </span>
+    of
+    <span class="font-semibold text-gray-900">
+        {{ businesses.paginator.count }}
+    </span>
+    verified businesses
+</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs sm:text-sm text-gray-500">
+                        <span class="inline-flex items-center gap-1">
+                            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            All verified
+                        </span>
+                        <span>|</span>
+                        <span>Updated today</span>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+
+            <!-- Business 1 -->
+             {% if businesses %}
+             {% for business in businesses %}
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition group">
+                <div class="overflow-hidden">
+                    {% if business.image %}
+                    <img decoding="async" loading="lazy" src="{{business.image.url}}" alt="{{business.name}}" class="w-full h-32 sm:h-40 object-cover group-hover:scale-105 transition duration-500">
+                    {% elif business.google_map_image %}
+                    <img decoding="async" loading="lazy" src="{{business.google_map_image}}" alt="{{business.name}}" class="w-full h-32 sm:h-40 object-cover group-hover:scale-105 transition duration-500">
+                    {% elif business.category.image %}
+                    <img decoding="async" loading="lazy" src="{{ business.category.image.url }}"  alt="{{business.name}}" class="w-full h-32 sm:h-40 object-cover group-hover:scale-105 transition duration-500">
+                    {% else %}
+                    <div class="w-full h-32 sm:h-40 bg-[#C0DFEE] flex items-center justify-center">
+                        <svg class="w-12 h-12 text-[#A20513]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+                    </div>
+                    {% endif %}
+
+                </div>
+                <div class="p-5 sm:p-6">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-14 h-14 bg-[#C0DFEE] rounded-xl flex items-center justify-center text-2xl shrink-0">
+                                <svg class="w-7 h-7 text-[#A20513]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900">{{business.name|capfirst}}</h3>
+                                <div class="flex items-center gap-1 mt-0.5">
+                                    <span class="inline-flex items-center gap-0.5 bg-green-100 text-green-700 text-xs font-medium px-1.5 py-0.5 rounded-full">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                        Verified
+                                    </span>
+                                    <span class="text-yellow-500 text-xs font-medium">★ {{business.rating}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 mt-3 text-sm text-gray-500">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span>{{business.city|capfirst}}</span>
+                        <span class="text-gray-300">|</span>
+                        <span class="inline-flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"/></svg>
+                            {{business.category.name|capfirst}}
+                        </span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3 leading-relaxed">
+                        Verified fire safety service provider in {{business.city|capfirst}}. Specializing in {{business.category.name|capfirst}} for residential and commercial clients.
+                    </p>
+                    
+                   
+                    <div class="mt-4 flex gap-2">
+                        <a href="{% url "contractor_detail" business.city.slug business.category.slug business.slug %}" class="flex-1 text-center px-4 py-2.5 bg-[#A20513] hover:bg-rose-700 text-white text-sm font-medium rounded-xl transition">View Details</a>
+                        <a href="https://wa.me/916202005500?text=Hi%20FireSeva!%20I%20want%20to%20know%20more%20about%20{{ business.name|urlencode }}%20in%20{{ business.city.name|urlencode }}." target="_blank"
+                           class="flex-1 text-center px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-xl transition">
+                            <span class="flex items-center justify-center gap-1">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                Enquire
+                            </span>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-span-full flex flex-col items-center justify-center py-16 px-4">
+                <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-[#A20513]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-1">No businesses found</h3>
+                <p class="text-sm text-gray-500 text-center max-w-md">Try adjusting your filters or search criteria to discover verified rental heavy machines in your area.</p>
+            </div>
+            {% endif %}
+            
+         
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-center mt-10 gap-2">
+
+    <!-- Previous -->
+    {% if businesses.has_previous %}
+        <a href="?city={{ city_slug }}&rental_item={{ service_slug }}&page={{ businesses.previous_page_number }}"
+           class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-100 transition text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </a>
+    {% endif %}
+
+    <!-- Page Numbers -->
+    {% for num in businesses.paginator.page_range %}
+
+        {% if businesses.number == num %}
+
+            <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-[#A20513] text-white font-medium text-sm">
+                {{ num }}
+            </span>
+
+        {% else %}
+
+            <a href="?city={{ city_slug }}&rental_item={{ service_slug }}&page={{ num }}"
+               class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-100 transition text-sm">
+                {{ num }}
+            </a>
+
+        {% endif %}
+
+    {% endfor %}
+
+    <!-- Next -->
+    {% if businesses.has_next %}
+        <a href="?city={{ city_slug }}&rental_item={{ service_slug }}&page={{ businesses.next_page_number }}"
+           class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-100 transition text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </a>
+    {% endif %}
+
+</div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Trust Our Listings -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Why Trust Us</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Why Trust Our Listings</h2>
+      <p class="text-gray-600 mt-2">Every contractor is <strong class="text-[#A20513]">Verified</strong> &mdash; we don't just list businesses, we vet them thoroughly so you can hire with confidence.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Document Verified</h3>
+        <p class="text-sm text-gray-600 mt-2">Every contractor undergoes GST, PAN, and business license verification before being listed.</p>
+      </div>
+
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Service Inspected</h3>
+        <p class="text-sm text-gray-600 mt-2">All listed services are physically inspected for safety, maintenance, and operational readiness.</p>
+      </div>
+
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Track Record</h3>
+        <p class="text-sm text-gray-600 mt-2">Verified project history and customer reviews from actual clients ensure proven reliability.</p>
+      </div>
+
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Insurance Covered</h3>
+        <p class="text-sm text-gray-600 mt-2">All services are covered by comprehensive insurance for equipment and liability protection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16" style="background-color: #C0DFEE;">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <span class="inline-block bg-white/70 text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">For Contractors</span>
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Are You a Contractor?</h2>
+    <p class="mt-2 text-gray-700 max-w-xl mx-auto">Join FireSeva and list your business to reach thousands of customers across India. Get verified and grow your business.</p>
+    <a href="" class="mt-6 inline-block px-8 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">List Your Business Today</a>
+  </div>
+</section>
+
+
+{% endblock content %}
+
+
+{% block extra_js %}
+<script src={% static 'js/find_contractor.js' %}></script>
+{% endblock extra_js %}
+
+

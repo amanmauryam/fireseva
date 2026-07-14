@@ -1,0 +1,71 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | HeavyRent Admin{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <span style="font-size:1.2rem; font-weight:700; color:#eab308;">HeavyRent</span>
+        <span style="font-size:0.85rem; color:#aaa;">Admin</span>
+    </a>
+</div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrahead %}
+<style>
+:root {
+    --primary: #1f2937;
+    --secondary: #374151;
+    --accent: #eab308;
+    --primary-fg: #fff;
+    --body-fg: #111827;
+    --body-bg: #f3f4f6;
+    --body-quiet-color: #6b7280;
+    --header-color: #f9fafb;
+    --breadcrumbs-fg: #eab308;
+    --link-fg: #1d4ed8;
+    --link-hover-color: #1e40af;
+    --selected-row: #fef9c3;
+}
+#header {
+    background: #1f2937;
+    color: #f9fafb;
+}
+#header a:link, #header a:visited {
+    color: #eab308;
+}
+.module h2, .module caption, .inline-group h2 {
+    background: #374151;
+}
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #eab308;
+    color: #000;
+}
+.button:active, input[type=submit]:active, input[type=button]:active {
+    background: #ca8a04;
+}
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: #1f2937;
+    color: #fff;
+}
+.button.default:hover, input[type=submit].default:hover {
+    background: #374151;
+}
+a:link, a:visited {
+    color: #1d4ed8;
+}
+#changelist-filter li.selected a {
+    color: #eab308;
+}
+#branding h1 {
+    color: #f9fafb;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{% endblock %}

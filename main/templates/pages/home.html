@@ -1,0 +1,604 @@
+
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+
+     <!-- Hero Section -->
+    <section class="pt-24 pb-12" style="background-color: #C0DFEE;">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+
+          <!-- Left Content -->
+          <div class="flex-1 text-center lg:text-left">
+            <span class="inline-flex items-center gap-1.5 bg-white/70 text-gray-700 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              Govt Approved Safety Marketplace
+            </span>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">
+              Find Trusted Fire Safety Experts Near You
+            </h1>
+
+            <p class="mt-4 text-base md:text-lg text-gray-700 max-w-xl">
+              Connect with verified fire contractors for installation, maintenance and compliance services. Secure your premises with certified expertise.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 mt-6 justify-center lg:justify-start">
+              <a href="{% url "find_contractors" %}" class="px-6 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Find Contractors</a>
+              <a href="javascript:void(0)" onclick="openEnquiry()" class="px-6 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Enquiry</a>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-4 mt-6 text-sm text-gray-600 justify-center lg:justify-start">
+              <span class="flex items-center gap-1">
+                <svg class="w-4 h-4 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                Inspector
+              </span>
+              <span class="flex items-center gap-1">
+                <svg class="w-4 h-4 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                Auditor
+              </span>
+              <span class="flex items-center gap-1">
+                <svg class="w-4 h-4 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                Contractor
+              </span>
+              <span class="text-gray-500">|</span>
+              <span class="font-semibold text-gray-800">500+ Verified Experts active in your area</span>
+            </div>
+          </div>
+
+          <!-- Right Content -->
+          <div class="flex-1 w-full max-w-lg">
+            <div class="relative">
+              <img src="https://i.pinimg.com/1200x/ce/69/c2/ce69c233ce9b1a14da9b86e8f4e0d09b.jpg" alt="Hero" class="w-full rounded-2xl shadow-lg">
+              <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur rounded-xl p-4 shadow">
+                <p class="text-xs text-gray-500 font-medium">Featured Installation</p>
+                <p class="text-sm font-bold text-gray-900">Cyber City Tech Park</p>
+                <div class="flex items-center gap-1 mt-1 text-green-600 text-xs font-medium">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  COMPLIANT
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Fire Services -->
+    <section class="py-16 bg-[#F4FAFF]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
+          <div>
+            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Our Services</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Popular Fire Services</h2>
+            <p class="text-gray-600 mt-2 max-w-2xl">Access top-rated professionals for specialized fire safety requirements. All contractors are pre-vetted for quality and compliance.</p>
+          </div>
+          <a href="{% url 'all_service' %}" class="inline-flex items-center gap-1 text-[#A20513] hover:text-rose-700 font-medium text-sm mt-3 sm:mt-0">
+            View all services
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Fire Alarm Installation -->
+          <div class="group bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Fire Alarm Installation</h3>
+            <p class="text-sm text-gray-600 mt-2">Advanced smoke and heat detection systems with centralized control monitoring.</p>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+              <span class="text-xs font-semibold text-[#A20513]">120+ Experts</span>
+              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Fire Hydrant System -->
+          <div class="group bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zM7.83 14c.37 0 .67.26.74.62.41 2.22 2.28 2.98 3.64 2.87.43-.02.79.32.79.75 0 .4-.32.73-.72.75-2.13.13-4.62-1.09-5.19-4.12-.08-.45.28-.87.74-.87z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Fire Hydrant System</h3>
+            <p class="text-sm text-gray-600 mt-2">Industrial grade hydrant networks and pipeline infrastructure for high-risk zones.</p>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+              <span class="text-xs font-semibold text-[#A20513]">85+ Experts</span>
+              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Sprinkler Installation -->
+          <div class="group bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Sprinkler Installation</h3>
+            <p class="text-sm text-gray-600 mt-2">Automatic fire suppression systems tailored for commercial and residential spaces.</p>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+              <span class="text-xs font-semibold text-[#A20513]">95+ Experts</span>
+              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Fire Extinguisher Services -->
+          <div class="group bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M19.5 9.5c-.08 0-.16.01-.24.02L16.5 5.5l-4 1.5v-3c0-.83-.67-1.5-1.5-1.5S9.5 3.17 9.5 4v3.5L6 6.5 4.5 9.5 7 11l1.5-1.5L11 11v6c-.7.49-1.38 1.06-2 1.71V17h-2v3h2v-.48c.71.51 1.53.98 2.5 1.27V22h3v-2.21c1.17-.36 2.26-1.01 3.16-1.88l.84-.84c.39-.39.58-.92.58-1.47V11l3-1.5-1.5-2zm-1.04 5L17 16l-1.46-1.5L14 16l-1.5-1.5L14 13l-1.5-1.5L14 10l1.5 1.5L17 10l1.5 1.5L17 13l1.5 1.5z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Fire Extinguisher Services</h3>
+            <p class="text-sm text-gray-600 mt-2">Certified refilling, hydro-testing, and scheduled maintenance of all extinguisher types.</p>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+              <span class="text-xs font-semibold text-[#A20513]">200+ Experts</span>
+              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Fire Safety Audit -->
+          <div class="group bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Fire Safety Audit</h3>
+            <p class="text-sm text-gray-600 mt-2">Comprehensive property risk assessments and compliance gap analysis reports.</p>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+              <span class="text-xs font-semibold text-[#A20513]">50+ Experts</span>
+              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Fire NOC Assistance -->
+          <div class="group bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Fire NOC Assistance</h3>
+            <p class="text-sm text-gray-600 mt-2">End-to-end guidance for obtaining government No Objection Certificates.</p>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+              <span class="text-xs font-semibold text-[#A20513]">40+ Consultants</span>
+              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+     <!-- Vital Importance of Fire Safety -->
+    <section class="py-16" style="background-color: #E6F6FF;">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+
+          <!-- Left Content -->
+          <div class="flex-1">
+            <span class="inline-block bg-white/70 text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Why Fire Safety Matters</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">The Vital Importance of Fire Safety Systems</h2>
+            <p class="text-gray-700 mt-4">Fire safety is not just a regulatory requirement; it's a life-saving necessity. Robust systems provide three critical layers of protection:</p>
+
+            <div class="space-y-5 mt-6">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center shrink-0">
+                  <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-900">Early Detection</h3>
+                  <p class="text-sm text-gray-600 mt-1">Identifying potential hazards before they escalate into uncontrollable blazes.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center shrink-0">
+                  <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-900">24/7 Protection</h3>
+                  <p class="text-sm text-gray-600 mt-1">Continuous monitoring ensures your assets and people are safe even when the premises are empty.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center shrink-0">
+                  <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-900">Immediate Suppression</h3>
+                  <p class="text-sm text-gray-600 mt-1">Automated responses like sprinklers act instantly to save lives and minimize property damage.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Image -->
+          <div class="flex-1 w-full max-w-lg">
+            <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="Fire Safety" class="w-full h-96 object-cover rounded-2xl shadow-lg">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Industries We Serve -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-10">
+          <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Industries</span>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Industries We Serve</h2>
+          <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Fire safety is a critical requirement across every sector. FireSeva provides tailored fire protection solutions for diverse industries nationwide.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Commercial Buildings</h3>
+            <p class="text-sm text-gray-600 mt-2">Office towers, shopping malls, and business parks requiring comprehensive fire alarm, sprinkler, and NOC compliance as per NBC Part 4.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM5.5 4h14l-3 7H7L5.5 4z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Manufacturing & Industrial</h3>
+            <p class="text-sm text-gray-600 mt-2">Factories, warehouses, and chemical plants with high-risk zones requiring hydrant networks, suppression systems, and regular safety audits.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Healthcare</h3>
+            <p class="text-sm text-gray-600 mt-2">Hospitals, clinics, and nursing homes with stringent fire safety mandates for patient safety, critical equipment protection, and uninterrupted operations.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Educational Institutions</h3>
+            <p class="text-sm text-gray-600 mt-2">Schools, colleges, and universities ensuring student and staff safety with fire alarms, extinguishers, and evacuation compliance.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M21 10V5l-3-3H5L2 5v14l3 3h7v-2H5V5h11v5h5zm-2 2h-2v2h2v-2zm0 4h-2v2h2v-2zm-4-4h-2v2h2v-2zm0 4h-2v2h2v-2zm-4-4H9v2h2v-2zm0 4H9v2h2v-2z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Hospitality</h3>
+            <p class="text-sm text-gray-600 mt-2">Hotels, resorts, and restaurants requiring integrated fire detection, emergency lighting, and kitchen suppression systems for guest safety.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M21.9 8.9l-1.4-1.4C17 4.1 14.7 3 12 3c-2.7 0-5 1.1-6.5 2.6L4.1 7 10 12.9V11c0-1.1.9-2 2-2s2 .9 2 2v2.9l2.1-2.1c.8-2.1 2.1-3.9 3.8-5.1v4.8l4.6-4.6 1.4 1.4-6 6-4.2-4.2V11c0-1.1-.9-2-2-2s-2 .9-2 2v1.8l-1.4 1.4-2.8-2.8 1.4-1.4L7 8.9V7.1C5.9 7.9 4.9 8.9 4.1 10L2.7 8.6C4 6.7 6 5.2 8.5 4.4l.5 3.1L12 10.6l3-3.1.5-3.1c2.5.8 4.5 2.3 5.8 4.2l-1.4 1.4 2.8 2.8 1.4-1.4-2.8-2.8z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Retail & Malls</h3>
+            <p class="text-sm text-gray-600 mt-2">Shopping complexes and retail chains with high footfall needing sprinklers, hydrants, and clear evacuation plans for public safety compliance.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Residential Complexes</h3>
+            <p class="text-sm text-gray-600 mt-2">Apartment buildings and housing societies requiring fire extinguishers, alarm systems, and NOC compliance for occupant safety and insurance.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+            <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-4">Government & Public Sector</h3>
+            <p class="text-sm text-gray-600 mt-2">Government buildings, public facilities, and infrastructure projects requiring strict adherence to national fire safety codes and standards.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How FireSeva Works -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 text-center bg-[#F4FAFF]">
+        <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">How It Works</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">How FireSeva Works</h2>
+
+        <div class="grid sm:grid-cols-3 gap-8 mt-10">
+
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div class="w-14 h-14 bg-[#C0DFEE] rounded-xl flex items-center justify-center mx-auto">
+              <svg class="w-7 h-7 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-5">Post Requirement</h3>
+            <p class="text-sm text-gray-600 mt-2">Describe your fire safety needs in a simple form to get started.</p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div class="w-14 h-14 bg-[#C0DFEE] rounded-xl flex items-center justify-center mx-auto">
+              <svg class="w-7 h-7 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-5">Get Quotes</h3>
+            <p class="text-sm text-gray-600 mt-2">Receive competitive transparent quotes from verified local experts.</p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div class="w-14 h-14 bg-[#C0DFEE] rounded-xl flex items-center justify-center mx-auto">
+              <svg class="w-7 h-7 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mt-5">Hire Experts</h3>
+            <p class="text-sm text-gray-600 mt-2">Review profiles, ratings, and hire the best partner for your project.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose FireSeva -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-2">
+          <span class="inline-block bg-[#E6F6FF] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Why Us</span>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Why Choose FireSeva</h2>
+        </div>
+
+        <div class="flex flex-col lg:flex-row items-center gap-10 mt-8">
+
+          <!-- Left: Features -->
+          <div class="flex-1 space-y-4">
+            <div class="flex items-start gap-4 bg-[#E6F6FF] p-4 rounded-xl">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">Verified Professionals</h3>
+                <p class="text-sm text-gray-600 mt-1">Every contractor undergoes a multi-step background and certification check.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-[#E6F6FF] p-4 rounded-xl">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">Compliance Guarantee</h3>
+                <p class="text-sm text-gray-600 mt-1">We ensure all work adheres to the latest Indian fire safety norms and local regulations.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 bg-[#E6F6FF] p-4 rounded-xl">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">Transparent Pricing</h3>
+                <p class="text-sm text-gray-600 mt-1">Standardized service rates with no hidden costs or middleman commissions.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Image with overlay -->
+          <div class="flex-1 w-full max-w-lg">
+            <div class="relative">
+              <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="Response" class="w-full h-96 object-cover rounded-2xl shadow-lg">
+              <div class="absolute inset-0 bg-black/40 rounded-2xl flex flex-col items-center justify-center">
+                <span class="text-6xl sm:text-7xl font-bold text-white">24h</span>
+                <span class="text-white text-lg sm:text-xl font-medium mt-2">Average Response Time</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance & Prevention Cards -->
+    <section class="py-16" style="background-color: #E6F6FF;">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid sm:grid-cols-2 gap-6">
+
+          <div class="bg-white rounded-2xl 
+          p-6 md:p-8 shadow-sm border border-gray-100">
+            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs font-medium mb-4">Policy</span>
+            <h3 class="text-xl font-bold text-gray-900">Why Compliance Matters</h3>
+            <p class="text-sm text-gray-600 mt-3 leading-relaxed">Adhering to National Building Code (NBC Part 4) is mandatory for high-rise, commercial, and industrial buildings in India. We help you navigate these complex legal standards to secure your Fire NOC and avoid heavy penalties or closures.</p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+            <div class="w-10 h-10 bg-[#C0DFEE] rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Preventing Emergencies Before They Start</h3>
+            <p class="text-sm text-gray-600 mt-3 leading-relaxed">Prevention is better than cure. Through regular maintenance, automated alarm testing, and hydrant readiness, we ensure that minor malfunctions don't turn into major disasters. Our partners keep your defense systems in peak condition 365 days a year.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  
+
+    <!-- Trusted by Industry Leaders -->
+    <section class="py-8" style="background-color: #C0DFEE;">
+      <div class="max-w-7xl mx-auto px-2 text-center">
+
+        
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">15k+</p>
+            <p class="text-gray-700 mt-1 font-medium">Audits Done</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">2,500+</p>
+            <p class="text-gray-700 mt-1 font-medium">Verified Partners</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">100%</p>
+            <p class="text-gray-700 mt-1 font-medium">Compliance Rate</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">24/7</p>
+            <p class="text-gray-700 mt-1 font-medium">Support Access</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+       <!-- Featured Safety Experts -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-end justify-between mb-8">
+          <div>
+            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Our Experts</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Featured Safety Experts</h2>
+          </div>
+          <a href="" class="inline-flex items-center gap-1 text-[#A20513] hover:text-rose-700 font-medium text-sm">
+            Find more experts
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="Agni Solutions" class="w-full h-40 object-cover">
+            <div class="p-6">
+              <span class="inline-block bg-[#A20513]/10 text-[#A20513] px-2 py-0.5 rounded-full text-xs font-medium">Contractor</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-3">Agni Solutions Pvt Ltd</h3>
+              <p class="text-sm text-gray-500">Mumbai &bull; 12 years exp.</p>
+              <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm font-medium">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                4.9
+              </div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Alarm Systems</span>
+                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Maintenance</span>
+              </div>
+              <a href="" class="mt-4 inline-block w-full text-center px-4 py-2 border border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">View Profile</a>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="SafeGuard Fire Systems" class="w-full h-40 object-cover">
+            <div class="p-6">
+              <span class="inline-block bg-[#A20513]/10 text-[#A20513] px-2 py-0.5 rounded-full text-xs font-medium">Contractor</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-3">SafeGuard Fire Systems</h3>
+              <p class="text-sm text-gray-500">Delhi &bull; 8 years exp.</p>
+              <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm font-medium">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                4.8
+              </div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Industrial Hydrants</span>
+                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">NOC Help</span>
+              </div>
+              <a href="" class="mt-4 inline-block w-full text-center px-4 py-2 border border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">View Profile</a>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="Elite Safety Hub" class="w-full h-40 object-cover">
+            <div class="p-6">
+              <span class="inline-block bg-[#A20513]/10 text-[#A20513] px-2 py-0.5 rounded-full text-xs font-medium">Contractor</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-3">Elite Safety Hub</h3>
+              <p class="text-sm text-gray-500">Bangalore &bull; 15 years exp.</p>
+              <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm font-medium">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                5.0
+              </div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Fire Audits</span>
+                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Sprinklers</span>
+              </div>
+              <a href="" class="mt-4 inline-block w-full text-center px-4 py-2 border border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">View Profile</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Trusted Network Banner -->
+    <section style="background-color: #E6F6FF;">
+      <div class="max-w-4xl mx-auto px-4 py-16">
+        <div class="rounded-2xl p-8 md:p-12 text-center" style="background-color: #A20513;">
+          <h2 class="text-2xl md:text-3xl font-bold text-white">India's Most Trusted Fire Safety Network</h2>
+          <p class="text-white/90 mt-4 text-base md:text-lg leading-relaxed">FireSeva serves as the essential bridge between property owners and vetted, compliant fire safety professionals. We simplify the complex world of fire safety procurement, ensuring every business has access to certified expertise and high-quality service standards across the nation.</p>
+        </div>
+      </div>
+    </section>
+
+        <!-- Fire Safety Resources -->
+    <section class="py-16" style="background-color: #E6F6FF;">
+      <div class="max-w-7xl mx-auto px-4">
+        <span class="inline-block bg-white/70 text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Resources</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Fire Safety Resources</h2>
+
+        <div class="grid sm:grid-cols-3 gap-6 mt-8">
+
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-2 py-0.5 rounded-full text-xs font-medium">Norms</span>
+            <h3 class="text-base font-bold text-gray-900 mt-3">New Indian Fire Safety Norms 2024</h3>
+            <p class="text-sm text-gray-600 mt-2">Understand the key updates in the NBC part 4 for commercial buildings.</p>
+            <a href="" class="inline-flex items-center gap-1 text-[#A20513] hover:text-rose-700 font-medium text-sm mt-3">GUIDE <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-2 py-0.5 rounded-full text-xs font-medium">NOC</span>
+            <h3 class="text-base font-bold text-gray-900 mt-3">Complete NOC Checklist for Malls</h3>
+            <p class="text-sm text-gray-600 mt-2">A step-by-step document guide to clear your Fire NOC without delays.</p>
+            <a href="" class="inline-flex items-center gap-1 text-[#A20513] hover:text-rose-700 font-medium text-sm mt-3">PROCESS <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-2 py-0.5 rounded-full text-xs font-medium">Maintenance</span>
+            <h3 class="text-base font-bold text-gray-900 mt-3">Quarterly Maintenance Tips</h3>
+            <p class="text-sm text-gray-600 mt-2">Preventive maintenance routines to keep your fire extinguishers ready.</p>
+            <a href="" class="inline-flex items-center gap-1 text-[#A20513] hover:text-rose-700 font-medium text-sm mt-3">MAINTENANCE <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Emergency Support CTA -->
+    <section class="py-16" style="background-color: #A20513;">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="flex-1 text-center lg:text-left">
+            <span class="inline-block bg-white/20 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-medium">24/7 Emergency</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mt-3">Fire Emergency? We Are Here to Help 24/7</h2>
+            <p class="text-white/90 mt-3 max-w-xl leading-relaxed">Immediate fire safety assistance available round the clock. Our emergency response team connects you with the nearest verified contractors for urgent fire suppression, evacuation support, and damage control.</p>
+            <div class="flex flex-wrap items-center gap-4 mt-6 justify-center lg:justify-start">
+              <a href="tel:+916202005500" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#A20513] hover:bg-gray-100 font-bold rounded-xl transition text-lg">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                +91 99343 68451
+              </a>
+              <a href="javascript:void(0)" onclick="openEnquiry()" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white hover:bg-white hover:text-[#A20513] font-semibold rounded-xl transition">
+                Send Emergency Request
+              </a>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <div class="w-40 h-40 bg-white/10 rounded-full flex items-center justify-center">
+              <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+
+
+
+    
+
+{% endblock content %}
+{% block extra_js %}
+
+{% endblock extra_js %}

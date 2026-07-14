@@ -1,0 +1,349 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="pt-28 pb-16" style="background-color: #C0DFEE;">
+  <div class="max-w-5xl mx-auto px-4 text-center">
+    <span class="inline-block bg-white/70 text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Why FireSeva</span>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">India's Most Trusted Fire Safety Platform</h1>
+    <p class="mt-4 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">From compliance to contracting — FireSeva is the only platform that gives you verified professionals, transparent pricing, and end-to-end fire safety management across India.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="{% url "find_contractors" %}" class="px-8 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Find Verified Contractors</a>
+      <a href="javascript:void(0)" onclick="openEnquiry()" class="px-8 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Get Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- Trust badges -->
+<section class="py-8 bg-white border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-wrap justify-center gap-6 sm:gap-10 text-sm font-medium text-gray-600">
+      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Govt Approved Marketplace</span>
+      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>500+ Verified Contractors</span>
+      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>15,000+ Audits Completed</span>
+      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>4.8★ Average Rating</span>
+    </div>
+  </div>
+</section>
+
+<!-- Problem / Pain Points -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">The Challenge</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Why Most Businesses Struggle With Fire Safety</h2>
+      <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Finding a reliable fire safety contractor in India is harder than it should be. Here's what goes wrong — and how FireSeva fixes it.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Unverified Contractors</h3>
+        <p class="text-sm text-gray-600 mt-2">Most listing sites don't verify credentials. You risk hiring unlicensed operators who fail inspections, deliver poor work, or vanish mid-project. FireSeva verifies every contractor — GST, PAN, licenses, insurance, and past project history.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Hidden Costs & Overcharging</h3>
+        <p class="text-sm text-gray-600 mt-2">Without standardised pricing, contractors quote arbitrary amounts. You end up overpaying or compromising on quality. FireSeva brings transparent, standardised rates so you know exactly what the job costs before you commit.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Compliance Confusion</h3>
+        <p class="text-sm text-gray-600 mt-2">Navigating NBC Part 4, Fire NOC, and local bylaws is complex. One mistake can lead to penalties, legal trouble, or insurance claim rejections. FireSeva partners with compliance experts who handle the paperwork so you don't have to.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why FireSeva - Main Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-14">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Why Choose Us</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Eight Reasons Why FireSeva Is The <span class="text-[#A20513]">Smarter Choice</span></h2>
+      <p class="text-gray-600 mt-2 max-w-xl mx-auto">Here's what makes us different from every other fire safety directory in India.</p>
+    </div>
+
+    <div class="space-y-12">
+      <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+        <div class="flex-1">
+          <span class="inline-flex items-center justify-center w-10 h-10 bg-[#A20513] text-white font-bold rounded-xl text-lg">1</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-4">Every Contractor Is Verified — No Exceptions</h3>
+          <p class="text-gray-600 mt-3 leading-relaxed">Unlike other platforms where anyone can list, FireSeva puts every contractor through a multi-step verification process. We check GST registration, PAN card, trade licenses, insurance coverage, and past project references. Only after passing all checks does a contractor get listed. This means when you hire through FireSeva, you're hiring a pre-vetted professional with a proven track record — not a random stranger.</p>
+        </div>
+        <div class="flex-1 w-full max-w-md bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#A20513] mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          <p class="text-3xl font-bold text-gray-900 mt-4">100%</p>
+          <p class="text-gray-500 text-sm">Contractors verified</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-16">
+        <div class="flex-1">
+          <span class="inline-flex items-center justify-center w-10 h-10 bg-[#A20513] text-white font-bold rounded-xl text-lg">2</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-4">Pan-India Coverage — 25+ Cities and Growing</h3>
+          <p class="text-gray-600 mt-3 leading-relaxed">Fire safety is a national requirement, and FireSeva is building a truly pan-India network. From metro cities like Mumbai, Delhi, and Bangalore to emerging hubs like Pune, Ahmedabad, and Hyderabad — we have verified contractors ready to serve you. Whether you need a fire audit in Chennai, extinguisher refilling in Kolkata, or NOC assistance in Lucknow, FireSeva connects you with local experts who understand your region's specific bylaws and requirements.</p>
+        </div>
+        <div class="flex-1 w-full max-w-md bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#A20513] mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          <p class="text-3xl font-bold text-gray-900 mt-4">25+</p>
+          <p class="text-gray-500 text-sm">Cities covered across India</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+        <div class="flex-1">
+          <span class="inline-flex items-center justify-center w-10 h-10 bg-[#A20513] text-white font-bold rounded-xl text-lg">3</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-4">Transparent, Standardised Pricing</h3>
+          <p class="text-gray-600 mt-3 leading-relaxed">One of the biggest frustrations in the fire safety industry is the lack of pricing transparency. Different contractors quote vastly different amounts for the same service. FireSeva solves this by standardising service rates across our network. You can browse pricing upfront, compare options, and choose what fits your budget — without any back-and-forth negotiation or surprise charges. What you see is what you pay.</p>
+        </div>
+        <div class="flex-1 w-full max-w-md bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#A20513] mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          <p class="text-3xl font-bold text-gray-900 mt-4">No Hidden Costs</p>
+          <p class="text-gray-500 text-sm">100% transparent pricing</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-16">
+        <div class="flex-1">
+          <span class="inline-flex items-center justify-center w-10 h-10 bg-[#A20513] text-white font-bold rounded-xl text-lg">4</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-4">End-to-End Compliance Support</h3>
+          <p class="text-gray-600 mt-3 leading-relaxed">Getting your Fire NOC isn't just about installing equipment — it involves navigating complex government regulations, submitting applications, and passing inspections. FireSeva's partner network includes compliance specialists who handle the entire process for you. From initial audit to documentation to final approval, we ensure your property meets all NBC Part 4 requirements and local fire department regulations. Our experts stay updated with the latest 2024-2025 amendments so you're always compliant.</p>
+        </div>
+        <div class="flex-1 w-full max-w-md bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#A20513] mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          <p class="text-3xl font-bold text-gray-900 mt-4">100%</p>
+          <p class="text-gray-500 text-sm">Compliance success rate</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+        <div class="flex-1">
+          <span class="inline-flex items-center justify-center w-10 h-10 bg-[#A20513] text-white font-bold rounded-xl text-lg">5</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-4">Physical Service Inspections</h3>
+          <p class="text-gray-600 mt-3 leading-relaxed">We don't just verify documents — we inspect the actual work. Before a contractor is fully listed, our team physically inspects their service quality, equipment condition, and operational readiness. This means when you book through FireSeva, you're getting a service that has been reviewed in person by our quality team. We also conduct periodic re-inspections to maintain standards, so you can trust that quality doesn't drop over time.</p>
+        </div>
+        <div class="flex-1 w-full max-w-md bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#A20513] mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+          <p class="text-3xl font-bold text-gray-900 mt-4">Inspected</p>
+          <p class="text-gray-500 text-sm">Every service checked in person</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-16">
+        <div class="flex-1">
+          <span class="inline-flex items-center justify-center w-10 h-10 bg-[#A20513] text-white font-bold rounded-xl text-lg">6</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-4">Insurance-Backed Protection</h3>
+          <p class="text-gray-600 mt-3 leading-relaxed">Every service booked through FireSeva is covered by comprehensive insurance. This includes both equipment protection and liability coverage. If anything goes wrong during installation, maintenance, or inspection, you're fully protected. This level of insurance backing is virtually unheard of in the Indian fire safety industry and is part of our commitment to making your experience completely risk-free.</p>
+        </div>
+        <div class="flex-1 w-full max-w-md bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#A20513] mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          <p class="text-3xl font-bold text-gray-900 mt-4">Covered</p>
+          <p class="text-gray-500 text-sm">Full insurance protection</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+        <div class="flex-1">
+          <span class="inline-flex items-center justify-center w-10 h-10 bg-[#A20513] text-white font-bold rounded-xl text-lg">7</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-4">24/7 Emergency Support</h3>
+          <p class="text-gray-600 mt-3 leading-relaxed">Fire emergencies don't follow business hours. That's why FireSeva offers round-the-clock support for all your fire safety needs. Whether you need an urgent extinguisher refill after an inspection failure, immediate repair of a damaged hydrant system, or last-minute NOC documentation, our team is available 24/7. You can reach us via phone, WhatsApp, or our online enquiry system — and we'll connect you with the right contractor immediately.</p>
+        </div>
+        <div class="flex-1 w-full max-w-md bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#A20513] mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <p class="text-3xl font-bold text-gray-900 mt-4">24/7</p>
+          <p class="text-gray-500 text-sm">Emergency support</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-16">
+        <div class="flex-1">
+          <span class="inline-flex items-center justify-center w-10 h-10 bg-[#A20513] text-white font-bold rounded-xl text-lg">8</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-4">Proven Track Record With Real Reviews</h3>
+          <p class="text-gray-600 mt-3 leading-relaxed">FireSeva doesn't allow fake reviews or paid ratings. Every review on our platform comes from a verified client who actually booked through us. With an average rating of 4.8 stars across thousands of completed projects, our contractors have proven their quality time and again. You can read detailed reviews, see project photos, and check rating histories before making your decision.</p>
+        </div>
+        <div class="flex-1 w-full max-w-md bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#A20513] mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <p class="text-3xl font-bold text-gray-900 mt-4">4.8★</p>
+          <p class="text-gray-500 text-sm">Average rating from real clients</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison / vs Others -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Comparison</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">FireSeva vs Other Platforms</h2>
+      <p class="text-gray-600 mt-2">See how we stack up against traditional directories and general contractor listing sites.</p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm bg-white rounded-2xl border border-gray-100 shadow-sm">
+        <thead>
+          <tr class="border-b border-gray-200">
+            <th class="text-left px-5 py-4 font-bold text-gray-900">Feature</th>
+            <th class="text-center px-5 py-4 font-bold text-[#A20513]">FireSeva</th>
+            <th class="text-center px-5 py-4 font-bold text-gray-400">Other Directories</th>
+            <th class="text-center px-5 py-4 font-bold text-gray-400">Google Search</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr>
+            <td class="px-5 py-4 text-gray-700">Contractor Verification</td>
+            <td class="px-5 py-4 text-center"><svg class="w-5 h-5 text-green-600 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+          </tr>
+          <tr>
+            <td class="px-5 py-4 text-gray-700">Physical Service Inspection</td>
+            <td class="px-5 py-4 text-center"><svg class="w-5 h-5 text-green-600 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+          </tr>
+          <tr>
+            <td class="px-5 py-4 text-gray-700">Transparent Pricing</td>
+            <td class="px-5 py-4 text-center"><svg class="w-5 h-5 text-green-600 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+          </tr>
+          <tr>
+            <td class="px-5 py-4 text-gray-700">Insurance Backed</td>
+            <td class="px-5 py-4 text-center"><svg class="w-5 h-5 text-green-600 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+          </tr>
+          <tr>
+            <td class="px-5 py-4 text-gray-700">NOC Compliance Support</td>
+            <td class="px-5 py-4 text-center"><svg class="w-5 h-5 text-green-600 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+          </tr>
+          <tr>
+            <td class="px-5 py-4 text-gray-700">24/7 Emergency Support</td>
+            <td class="px-5 py-4 text-center"><svg class="w-5 h-5 text-green-600 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+          </tr>
+          <tr>
+            <td class="px-5 py-4 text-gray-700">Verified Client Reviews</td>
+            <td class="px-5 py-4 text-center"><svg class="w-5 h-5 text-green-600 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></td>
+            <td class="px-5 py-4 text-center"><svg class="w-5 h-5 text-green-600 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></td>
+            <td class="px-5 py-4 text-center text-gray-300">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Testimonials</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">What Our Clients Say</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="flex items-center gap-1 text-yellow-500 text-sm mb-3">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="text-sm text-gray-600 leading-relaxed">"FireSeva helped us get our Fire NOC in just 10 days. The compliance team handled everything while we focused on our business. Incredible service."</p>
+        <div class="mt-4 pt-4 border-t border-gray-200">
+          <p class="font-bold text-gray-900 text-sm">Rajesh Mehta</p>
+          <p class="text-xs text-gray-500">Facility Manager, Nexus Malls</p>
+        </div>
+      </div>
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="flex items-center gap-1 text-yellow-500 text-sm mb-3">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="text-sm text-gray-600 leading-relaxed">"We needed a complete fire alarm system for our IT park. Found three verified contractors on FireSeva, compared quotes, and hired the best one. Smooth experience from start to finish."</p>
+        <div class="mt-4 pt-4 border-t border-gray-200">
+          <p class="font-bold text-gray-900 text-sm">Anita Krishnan</p>
+          <p class="text-xs text-gray-500">Operations Head, Global Tech Park</p>
+        </div>
+      </div>
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="flex items-center gap-1 text-yellow-500 text-sm mb-3">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="text-sm text-gray-600 leading-relaxed">"As a small business owner, I was struggling with fire compliance. FireSeva made it affordable and easy. Their contractors actually care about quality."</p>
+        <div class="mt-4 pt-4 border-t border-gray-200">
+          <p class="font-bold text-gray-900 text-sm">Vikram Singh</p>
+          <p class="text-xs text-gray-500">Owner, Singh Enterprises</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">FAQ</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Frequently Asked Questions</h2>
+    </div>
+    <div class="space-y-4">
+      <details class="bg-white rounded-2xl border border-gray-100 p-5 group">
+        <summary class="font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between">How does FireSeva verify contractors?<svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+        <p class="text-sm text-gray-600 mt-3 leading-relaxed">Every contractor submits GST registration, PAN card, trade licenses, insurance documents, and past project references. Our team verifies each document with the issuing authority and also conducts a physical inspection of their equipment and service quality before listing.</p>
+      </details>
+      <details class="bg-white rounded-2xl border border-gray-100 p-5 group">
+        <summary class="font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between">What cities does FireSeva cover?<svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+        <p class="text-sm text-gray-600 mt-3 leading-relaxed">We currently operate in Mumbai, Delhi, Bangalore, Pune, Hyderabad, Chennai, Kolkata, Ahmedabad, and 17 other cities. We're expanding to new locations every month. If your city isn't listed, contact us and we'll prioritise it.</p>
+      </details>
+      <details class="bg-white rounded-2xl border border-gray-100 p-5 group">
+        <summary class="font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between">How long does it take to get a Fire NOC?<svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+        <p class="text-sm text-gray-600 mt-3 leading-relaxed">Typical Fire NOC processing takes 15-30 days depending on your city and building complexity. Our compliance partners expedite the process by ensuring all documentation is correct from the start, minimising back-and-forth with authorities.</p>
+      </details>
+      <details class="bg-white rounded-2xl border border-gray-100 p-5 group">
+        <summary class="font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between">Is there a warranty on services?<svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+        <p class="text-sm text-gray-600 mt-3 leading-relaxed">Yes. All services booked through FireSeva come with a service warranty and comprehensive insurance coverage. If any issues arise post-service, our support team mediates and ensures resolution.</p>
+      </details>
+      <details class="bg-white rounded-2xl border border-gray-100 p-5 group">
+        <summary class="font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between">How do I list my business on FireSeva?<svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+        <p class="text-sm text-gray-600 mt-3 leading-relaxed">Click the "Be a Partner" button on our website or contact us directly. Our team will guide you through the verification process. Once approved, your business gets listed on India's fastest-growing fire safety platform.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-20" style="background-color: #A20513;">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-white">Don't Compromise on Fire Safety</h2>
+    <p class="text-white/90 mt-4 text-lg max-w-2xl mx-auto">Join thousands of Indian businesses that trust FireSeva for their fire safety needs. Verified contractors, transparent pricing, and end-to-end compliance support — all in one platform.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="{% url "find_contractors" %}" class="px-8 py-3 bg-white text-[#A20513] hover:bg-gray-100 font-semibold rounded-xl transition">Find Verified Contractors</a>
+      <a href="javascript:void(0)" onclick="openEnquiry()" class="px-8 py-3 border-2 border-white text-white hover:bg-white/10 font-semibold rounded-xl transition">Get Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

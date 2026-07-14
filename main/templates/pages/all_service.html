@@ -1,0 +1,242 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}All Fire Safety Services - FireSeva India {% endblock %}
+{% block meta %}
+<meta name="description" content="Explore all fire safety services by FireSeva: Fire alarm installation, extinguisher refilling, hydrant systems, fire audits, NOC assistance & more. Verified contractors across India.">
+<meta name="keywords" content="fire safety services, fire alarm installation, fire extinguisher refilling, fire hydrant system, fire audit, fire NOC, fire sprinklers, fire safety contractors India">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="pt-28 pb-16" style="background-color: #C0DFEE;">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <span class="inline-flex items-center gap-1.5 bg-white/70 text-gray-700 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      Our Services
+    </span>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">Complete Fire Safety Services Across India</h1>
+    <p class="mt-4 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">FireSeva connects you with verified fire safety contractors and consultants for installation, maintenance, auditing, and compliance services. Every service is delivered by certified professionals adhering to NBC 2024 and local fire department regulations.</p>
+    <div class="flex flex-wrap items-center justify-center gap-4 mt-6">
+      <a href="{% url 'find_contractors' %}" class="px-6 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Find Verified Contractors</a>
+      <a href="javascript:void(0)" onclick="openEnquiry()" class="px-6 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Get Free Enquiry</a>
+    </div>
+  </div>
+</section>
+
+<!-- All Services Grid -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">What We Offer</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">All Fire Safety Services</h2>
+      <p class="text-gray-600 mt-2 max-w-3xl mx-auto">Explore our complete range of fire safety services. Each category is served by pre-vetted, licensed, and insured contractors with proven track records across residential, commercial, and industrial sectors.</p>
+    </div>
+
+    <div class="space-y-16">
+      {% for service in services %}
+      <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 {% if forloop.counter|divisibleby:2 %}lg:flex-row-reverse{% endif %}">
+        <div class="flex-1">
+          <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm border border-gray-100 h-full flex items-center justify-center p-8">
+            {% if service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service.name }} - Fire Safety Service by FireSeva" class="w-full h-72 object-contain">
+            {% else %}
+            <div class="w-full h-72 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+              <svg class="w-24 h-24 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col justify-center">
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900">{{ service.name }}</h3>
+          <p class="text-gray-700 mt-4 leading-relaxed">{{ service.description }}</p>
+          {% if service.use_cases %}
+          <div class="mt-6">
+            <div class="flex items-center gap-2 mb-3">
+              <svg class="w-5 h-5 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <h4 class="text-lg font-bold text-gray-900">Use Cases</h4>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed">{{ service.use_cases }}</p>
+          </div>
+          {% endif %}
+          <div class="flex flex-wrap gap-3 mt-6">
+            <a href="{% url 'find_contractors' %}" class="inline-flex items-center gap-1 px-5 py-2.5 bg-[#A20513] hover:bg-rose-700 text-white font-medium rounded-xl text-sm transition">
+              Find {{ service.name }} Experts
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+            <a href="javascript:void(0)" onclick="openEnquiry()" class="inline-flex items-center gap-1 px-5 py-2.5 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">
+              Enquire Now
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="text-center py-16">
+        <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <h3 class="text-xl font-bold text-gray-600">Services Coming Soon</h3>
+        <p class="text-sm text-gray-400 mt-2">We are adding new fire safety services regularly. Stay tuned.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Why Regular Fire Safety Maintenance Matters -->
+<section class="py-16" style="background-color: #F4FAFF;">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Why Maintenance</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Why Regular Fire Safety Maintenance Matters</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+        <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Legal Compliance</h3>
+        <p class="text-sm text-gray-600 mt-2">Indian law mandates fire safety systems for all commercial buildings. Regular maintenance keeps you compliant with NBC Part 4 and local fire brigade regulations.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+        <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Life & Asset Protection</h3>
+        <p class="text-sm text-gray-600 mt-2">Properly maintained systems detect and suppress fires early, saving lives and minimizing property damage during emergencies.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+        <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Insurance Validity</h3>
+        <p class="text-sm text-gray-600 mt-2">Most property insurance policies require valid fire NOC and maintenance records. Non-compliance can void your coverage and claims.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+        <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Peace of Mind</h3>
+        <p class="text-sm text-gray-600 mt-2">Knowing your fire safety infrastructure is in top condition lets you focus on your business operations without worry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How to Choose the Right Fire Safety Service -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+      <div class="flex-1">
+        <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Guide</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">How to Choose the Right Fire Safety Service</h2>
+        <p class="text-gray-700 mt-4 leading-relaxed">Selecting the appropriate fire safety service for your property depends on several factors including building type, occupancy, local regulations, and risk profile. Here is a simple framework to help you decide:</p>
+        <ul class="space-y-4 mt-6">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-[#A20513] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div>
+              <strong class="text-gray-900">Assess Your Needs:</strong>
+              <span class="text-gray-600 text-sm"> Identify whether you need installation, maintenance, audit, or NOC assistance based on your current compliance status.</span>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-[#A20513] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div>
+              <strong class="text-gray-900">Check Credentials:</strong>
+              <span class="text-gray-600 text-sm"> Always verify that the service provider holds valid licenses, certifications, and insurance coverage.</span>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-[#A20513] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div>
+              <strong class="text-gray-900">Compare Quotes:</strong>
+              <span class="text-gray-600 text-sm"> Get multiple quotes from verified contractors on FireSeva to ensure transparent pricing.</span>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-[#A20513] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div>
+              <strong class="text-gray-900">Schedule Regular Maintenance:</strong>
+              <span class="text-gray-600 text-sm"> Fire safety is not a one-time investment. Schedule periodic inspections to stay compliant and safe.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-1 w-full max-w-lg">
+        <img src="https://i.pinimg.com/1200x/ce/69/c2/ce69c233ce9b1a14da9b86e8f4e0d09b.jpg" alt="Fire safety service guide - How to choose the right fire protection service for your building in India" class="w-full h-80 object-cover rounded-2xl shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services by City -->
+<section class="py-16" style="background-color: #F4FAFF;">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Coverage</span>
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Fire Safety Services Available Across Major Indian Cities</h2>
+    <p class="text-gray-600 mt-2 max-w-3xl mx-auto">Our verified contractors serve all major metropolitan and tier-2 cities across India. Find trusted fire safety experts in your city.</p>
+    <div class="flex flex-wrap justify-center gap-3 mt-8">
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Mumbai</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Delhi</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Bangalore</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Pune</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Hyderabad</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Chennai</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Kolkata</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Ahmedabad</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Jaipur</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Lucknow</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Surat</span>
+      <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Chandigarh</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="py-16" style="background-color: #C0DFEE;">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <div class="rounded-2xl p-8 md:p-12" style="background-color: #A20513;">
+      <h2 class="text-2xl md:text-3xl font-bold text-white">Need Help Choosing the Right Service?</h2>
+      <p class="text-white/90 mt-4 text-base md:text-lg leading-relaxed">Our fire safety advisors are available 24/7 to help you assess your requirements and connect you with the best verified contractors in your area.</p>
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <a href="javascript:void(0)" onclick="openEnquiry()" class="px-8 py-3 bg-white text-[#A20513] hover:bg-gray-100 font-semibold rounded-xl transition">Get Free Consultation</a>
+        <a href="{% url 'find_contractors' %}" class="px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-[#A20513] font-semibold rounded-xl transition">Browse Contractors</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section for SEO -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">FAQ</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Frequently Asked Questions About Fire Safety Services</h2>
+    </div>
+    <div class="space-y-4">
+      <details class="group bg-gray-50 rounded-2xl p-5 border border-gray-100 open:border-[#A20513] transition">
+        <summary class="flex items-center justify-between cursor-pointer text-gray-900 font-semibold">Which fire safety service do I need for my commercial building?</summary>
+        <p class="mt-3 text-sm text-gray-600 leading-relaxed">Every commercial building in India requires a comprehensive fire safety setup as per NBC Part 4. Typically you will need fire alarm systems, fire extinguishers, hydrant systems, and a valid fire NOC. Start with a fire safety audit to identify gaps, then proceed with installations and maintenance as recommended.</p>
+      </details>
+      <details class="group bg-gray-50 rounded-2xl p-5 border border-gray-100 open:border-[#A20513] transition">
+        <summary class="flex items-center justify-between cursor-pointer text-gray-900 font-semibold">How often should fire extinguishers be serviced?</summary>
+        <p class="mt-3 text-sm text-gray-600 leading-relaxed">Fire extinguishers should undergo visual inspection monthly, maintenance checks annually, and hydrostatic testing every 5-10 years depending on the type. FireSeva contractors provide scheduled maintenance plans to ensure your extinguishers are always ready.</p>
+      </details>
+      <details class="group bg-gray-50 rounded-2xl p-5 border border-gray-100 open:border-[#A20513] transition">
+        <summary class="flex items-center justify-between cursor-pointer text-gray-900 font-semibold">What is a Fire NOC and why is it important?</summary>
+        <p class="mt-3 text-sm text-gray-600 leading-relaxed">A Fire NOC (No Objection Certificate) is a mandatory document issued by the fire department certifying that a building complies with fire safety norms. It is required for building approval, insurance renewal, and annual compliance. FireSeva consultants provide end-to-end NOC assistance to help you obtain and renew your certificate smoothly.</p>
+      </details>
+      <details class="group bg-gray-50 rounded-2xl p-5 border border-gray-100 open:border-[#A20513] transition">
+        <summary class="flex items-center justify-between cursor-pointer text-gray-900 font-semibold">Are FireSeva contractors verified and insured?</summary>
+        <p class="mt-3 text-sm text-gray-600 leading-relaxed">Yes. Every contractor listed on FireSeva undergoes a multi-step verification process including document checks, license validation, and insurance verification. We ensure all service providers meet the highest standards of quality and compliance before they can serve customers on our platform.</p>
+      </details>
+      <details class="group bg-gray-50 rounded-2xl p-5 border border-gray-100 open:border-[#A20513] transition">
+        <summary class="flex items-center justify-between cursor-pointer text-gray-900 font-semibold">How do I get a quote for fire safety services?</summary>
+        <p class="mt-3 text-sm text-gray-600 leading-relaxed">Simply submit an enquiry through FireSeva with your requirements. Our platform will connect you with up to 3 verified contractors who will provide competitive quotes. You can compare their proposals, check ratings, and hire the best fit for your project.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
