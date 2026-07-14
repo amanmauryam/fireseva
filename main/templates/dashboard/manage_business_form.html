@@ -1,0 +1,146 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}{% if editing %}Edit Business{% else %}Add Business{% endif %} - HeavyRent{% endblock %}
+{% block page_title %}{% if editing %}Edit Business{% else %}Add Business{% endif %}{% endblock %}
+{% block page_subtitle %}{% if editing %}Update your business listing{% else %}List your equipment rental business{% endif %}{% endblock %}
+
+{% block content %}
+
+<div class="max-w-2xl mx-auto animate-in">
+    <div class="card p-6 sm:p-8">
+        <!-- Messages -->
+        {% if messages %}
+        <div class="mb-6 space-y-2">
+            {% for message in messages %}
+            <div class="p-4 rounded-xl text-sm font-medium {% if message.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-emerald-50 text-emerald-700 border border-emerald-200{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="flex items-center gap-3 mb-6 pb-5 border-b border-gray-100">
+                <div class="w-10 h-10 rounded-xl bg-yellow-100 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-gray-900">{% if editing %}Edit Business{% else %}New Business{% endif %}</h3>
+                    <p class="text-xs text-gray-400">{% if editing %}Update your listing details{% else %}Fill in the details to list your business{% endif %}</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 mb-6">
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">Business Name <span class="text-red-500">*</span></label>
+                    <input type="text" name="name" value="{{ business.name|default:'' }}" required class="input-field" placeholder="e.g. Singh Construction Rentals">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">Category <span class="text-red-500">*</span></label>
+                    <select name="category" required class="input-field">
+                        <option value="">Select Category</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat.pk }}" {% if business.categories_id == cat.pk %}selected{% endif %}>{{ cat.name|capfirst }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">State <span class="text-red-500">*</span></label>
+                    <select name="state" required class="input-field" onchange="loadCities(this.value)">
+                        <option value="">Select State</option>
+                        {% for state in states %}
+                        <option value="{{ state.pk }}" {% if business.state_id == state.pk %}selected{% endif %}>{{ state.name|capfirst }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">City <span class="text-red-500">*</span></label>
+                    <select name="city" required class="input-field" id="city-select">
+                        <option value="">Select City</option>
+                        {% if business %}
+                        <option value="{{ business.city_id }}" selected>{{ business.city.name|capfirst }}</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">Phone</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center px-3.5 text-gray-600 font-medium border-r border-gray-200 bg-gray-50 rounded-l-xl text-sm">+91</span>
+                        <input
+                            type="tel"
+                            name="phone"
+                            value="{{ business.phone|default:'' }}"
+                            maxlength="10"
+                            placeholder="98765 43210"
+                            class="input-field pl-14"
+                        >
+                    </div>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">Address</label>
+                    <textarea name="address" rows="3" class="input-field" placeholder="Full business address">{{ business.address|default:'' }}</textarea>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Business Photo</label>
+                    <label class="relative block border-2 border-dashed border-gray-200 rounded-2xl p-6 text-center hover:border-yellow-400 hover:bg-yellow-50/30 transition cursor-pointer group">
+                        <div id="photo-preview" class="w-20 h-20 mx-auto mb-3 rounded-xl bg-gray-50 flex items-center justify-center overflow-hidden ring-1 ring-gray-200 group-hover:ring-yellow-300 transition">
+                            {% if business.image %}
+                            <img decoding="async" loading="lazy" src="{{ business.image.url }}" class="w-full h-full object-cover">
+                            {% else %}
+                            <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            {% endif %}
+                        </div>
+                        <p class="text-sm font-semibold text-gray-600 group-hover:text-yellow-700 transition">{% if business.image %}Change Photo{% else %}Upload Photo{% endif %}</p>
+                        <p class="text-xs text-gray-400 mt-1">PNG, JPG or WebP</p>
+                        <input id="photo-input" type="file" name="image" accept="image/*" class="hidden" onchange="previewImage(this, 'photo-preview')">
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-3 pt-5 border-t border-gray-100">
+                <button type="submit" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-600 hover:to-yellow-500 text-black font-bold rounded-xl transition-all duration-200 text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    {% if editing %}Save Changes{% else %}Add Business{% endif %}
+                </button>
+                <a href="{% url 'manage_business' %}" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl transition-all duration-200 text-sm hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function previewImage(input, previewId) {
+        const preview = document.getElementById(previewId);
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = '<img decoding="async"  loading="lazy" src="' + e.target.result + '" class="w-full h-full object-cover">';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function loadCities(stateId) {
+        if (!stateId) return;
+        fetch('/ajax/cities/?state_id=' + stateId)
+            .then(r => r.json())
+            .then(data => {
+                const select = document.getElementById('city-select');
+                select.innerHTML = '<option value="">Select City</option>';
+                data.forEach(c => {
+                    select.innerHTML += '<option value="' + c.id + '">' + c.name + '</option>';
+                });
+            });
+    }
+</script>
+{% endblock %}

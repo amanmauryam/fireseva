@@ -1,0 +1,64 @@
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity duration-300" onclick="toggleSidebar()"></div>
+
+<aside id="dashboard-sidebar" class="fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-gray-100 shadow-xl shadow-gray-200/30 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-out flex flex-col">
+
+    <div class="h-16 flex items-center gap-3 px-5 border-b border-gray-50 shrink-0">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 flex items-center justify-center shadow-sm shadow-yellow-200/50">
+            <span class="text-sm font-black text-black">HR</span>
+        </div>
+        <div>
+            <a href="{% url 'manage_business' %}" class="text-base font-bold text-gray-900 leading-none tracking-tight block">
+                Heavy<span class="text-yellow-500">Rent</span>
+            </a>
+            <span class="text-[9px] font-semibold text-gray-400 tracking-[0.15em] uppercase">Owner Dashboard</span>
+        </div>
+    </div>
+
+    <nav class="flex-1 px-3 py-5 space-y-0.5 overflow-y-auto overflow-x-hidden">
+
+        <a href="{% url 'manage_business' %}"
+           class="sidebar-link-active rounded-xl py-3 px-3 bg-yellow-500 hover:text-black-600 bg-yellow-500 transition">
+            <span class="sidebar-icon {% if active_page == 'businesses' %}sidebar-icon-active{% endif %}">
+                
+            </span>
+            <span>Manage Your Business</span>
+        </a>
+
+        
+    </nav>
+
+    <div class="px-3 py-4 border-t border-gray-50 shrink-0 space-y-1">
+        <div class="flex items-center gap-3 px-3 py-2.5 bg-gradient-to-r from-yellow-50/50 to-amber-50/30 rounded-xl">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 flex items-center justify-center text-sm font-black text-black shadow-sm shadow-yellow-200/50 shrink-0">
+                {{ request.user.email|first|upper }}
+            </div>
+            <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-gray-900 truncate leading-tight">{{ request.user.email }}</p>
+                <p class="text-[10px] font-medium text-gray-400">Business Owner</p>
+            </div>
+        </div>
+
+        <a href="{% url 'home' %}"
+           class="sidebar-link text-gray-400 hover:text-gray-900">
+            <span class="sidebar-icon">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M19 12H5"/>
+                    <polyline points="12 19 5 12 12 5"/>
+                </svg>
+            </span>
+            <span>Back to Site</span>
+        </a>
+
+        <a href="{% url 'logout' %}"
+           class="sidebar-link text-gray-400 hover:text-red-600 hover:bg-red-50">
+            <span class="sidebar-icon">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+            </span>
+            <span>Logout</span>
+        </a>
+    </div>
+</aside>

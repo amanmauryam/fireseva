@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'app',
     'smart_selects',
     'django_ckeditor_5',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -170,3 +171,7 @@ CKEDITOR_5_CONFIGS = {
         },
     }
 }
+
+
+RECAPTCHA_SITE_KEY = "6LdjFFMtAAAAAGoq3Hleci_HzLaIaPrt5wKwOHo6"
+RECAPTCHA_SECRET_KEY = "6LdjFFMtAAAAAOGtKS5WNxRSEkZMHcF7q4qe31Sr"

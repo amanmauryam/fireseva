@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard - HeavyRent{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    {% block extra_css %}{% endblock %}
+    <style>
+        * { scrollbar-width: thin; scrollbar-color: #e5e7eb transparent; }
+        *::-webkit-scrollbar { width: 5px; }
+        *::-webkit-scrollbar-track { background: transparent; }
+        *::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+
+        .sidebar-link {
+            @apply relative flex items-center gap-3 px-3 py-2 h-11 text-sm font-medium text-gray-500 rounded-xl transition-all duration-200 hover:bg-yellow-50 hover:text-gray-900 hover:translate-x-0.5;
+        }
+        .sidebar-link-active {
+            @apply bg-yellow-50 text-yellow-700 font-bold shadow-sm;
+        }
+        .sidebar-link-active::before {
+            content: '';
+            @apply absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 bg-yellow-500 rounded-r-full;
+        }
+        .sidebar-icon {
+            @apply w-7 h-7 rounded-lg bg-gray-100 flex items-center justify-center shrink-0 text-gray-400 transition-all duration-200;
+        }
+        .sidebar-link:hover .sidebar-icon {
+            @apply bg-yellow-200 text-yellow-500;
+        }
+        .sidebar-link-active .sidebar-icon {
+            @apply bg-yellow-200 text-yellow-500;
+        }
+        .btn-primary {
+            @apply inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-600 hover:to-yellow-500 text-black font-semibold rounded-xl transition-all duration-200 text-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0;
+        }
+        .btn-secondary {
+            @apply inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition-all duration-200 text-sm hover:-translate-y-0.5 active:translate-y-0;
+        }
+        .btn-danger {
+            @apply inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-red-500 to-red-400 hover:from-red-600 hover:to-red-500 text-white font-medium rounded-xl transition-all duration-200 text-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0;
+        }
+        .btn-ghost {
+            @apply inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200;
+        }
+        .input-field {
+            @apply w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 transition-all duration-200;
+        }
+        .input-field-error {
+            @apply border-red-300 focus:ring-red-400/50 focus:border-red-400;
+        }
+        .card {
+            @apply bg-white rounded-2xl border border-gray-100 shadow-sm transition-shadow duration-200;
+        }
+        .card-hover {
+            @apply card hover:shadow-md;
+        }
+        .badge {
+            @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+        }
+        .badge-green { @apply badge bg-emerald-50 text-emerald-700; }
+        .badge-yellow { @apply badge bg-amber-50 text-amber-700; }
+        .badge-blue { @apply badge bg-blue-50 text-blue-700; }
+        .badge-gray { @apply badge bg-gray-100 text-gray-600; }
+        .badge-red { @apply badge bg-red-50 text-red-700; }
+
+        .tab-btn {
+            @apply px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 whitespace-nowrap;
+        }
+        .tab-btn-active {
+            @apply bg-yellow-500 text-black shadow-sm;
+        }
+        .tab-btn-inactive {
+            @apply bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        .modal-overlay {
+            @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+        }
+        .modal-backdrop {
+            @apply absolute inset-0 bg-black/50 backdrop-blur-sm;
+        }
+        .modal-box {
+            @apply relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 animate-in;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100/50 text-gray-900 antialiased min-h-screen">
+
+    {% include "dashboard/includes/sidebar.html" %}
+    {% include "dashboard/includes/header.html" %}
+
+    <div id="main-wrapper" class="lg:pl-64 pt-16 min-h-screen flex flex-col transition-all duration-300">
+        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="px-6 lg:px-8 py-4">
+            <p class="text-xs text-gray-400 text-center">&copy; {% now "Y" %} HeavyRent. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('dashboard-sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.toggle('hidden');
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('user-dropdown')?.classList.add('hidden');
+                document.getElementById('dashboard-sidebar')?.classList.add('-translate-x-full');
+                document.getElementById('sidebar-overlay')?.classList.add('hidden');
+                document.querySelectorAll('[id$="-modal"]').forEach(m => m.classList.add('hidden'));
+            }
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
