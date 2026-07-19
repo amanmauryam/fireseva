@@ -6,6 +6,21 @@
 <!-- Hero -->
 <section class="pt-28 pb-16" style="background-color: #C0DFEE;">
   <div class="max-w-5xl mx-auto px-4 text-center">
+    <nav aria-label="Breadcrumb" class="py-4">
+    <ol class="flex items-center gap-2 text-sm text-gray-600">
+        <li>
+            <a href="{% url 'home' %}" class="hover:text-orange-600 transition-colors">
+                Home
+            </a>
+        </li>
+
+        <li aria-hidden="true">/</li>
+
+        <li class="font-medium text-gray-900" aria-current="page">
+            Why Fireseva
+        </li>
+    </ol>
+   </nav>
     <span class="inline-block bg-white/70 text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Why FireSeva</span>
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">India's Most Trusted Fire Safety Platform</h1>
     <p class="mt-4 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">From compliance to contracting — FireSeva is the only platform that gives you verified professionals, transparent pricing, and end-to-end fire safety management across India.</p>

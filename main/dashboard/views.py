@@ -35,7 +35,7 @@ def manage_business_add(request):
             business = Business.objects.create(
                 name=name,
                 user=request.user,
-                categories_id=category_id,
+                category_id=category_id,
                 state_id=state_id,
                 city_id=city_id,
                 phone=phone,

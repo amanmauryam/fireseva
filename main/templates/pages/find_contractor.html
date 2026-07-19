@@ -6,6 +6,21 @@
 <!-- Hero -->
 <section class="pt-28 pb-16" style="background-color: #C0DFEE;">
   <div class="max-w-6xl mx-auto px-4 text-center">
+    <nav aria-label="Breadcrumb" class="py-4">
+    <ol class="flex items-center gap-2 text-sm text-gray-600">
+        <li>
+            <a href="{% url 'home' %}" class="hover:text-orange-600 transition-colors">
+                Home
+            </a>
+        </li>
+
+        <li aria-hidden="true">/</li>
+
+        <li class="font-medium text-gray-900" aria-current="page">
+            Find contracor
+        </li>
+    </ol>
+   </nav>
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">Verified Contractors Near You</h1>
     <p class="mt-3 text-base md:text-lg text-gray-700 max-w-2xl mx-auto">Browse from our network of trusted and verified fire safety providers across India. Every contractor listed is thoroughly vetted for quality and reliability.</p>
 
@@ -218,9 +233,13 @@
                                 <div class="flex items-center gap-1 mt-0.5">
                                     <span class="inline-flex items-center gap-0.5 bg-green-100 text-green-700 text-xs font-medium px-1.5 py-0.5 rounded-full">
                                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                        {% if business.status == 'V' %}
                                         Verified
+                                        {% else %}
+                                        Pending
+                                        {% endif %}
                                     </span>
-                                    <span class="text-yellow-500 text-xs font-medium">★ {{business.rating}}</span>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -229,18 +248,12 @@
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                         <span>{{business.city|capfirst}}</span>
                         <span class="text-gray-300">|</span>
-                        <span class="inline-flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"/></svg>
-                            {{business.category.name|capfirst}}
-                        </span>
+                        <span class="text-yellow-500 text-xs font-medium">★ {{business.rating}}</span>
                     </div>
-                    <p class="text-sm text-gray-600 mt-3 leading-relaxed">
-                        Verified fire safety service provider in {{business.city|capfirst}}. Specializing in {{business.category.name|capfirst}} for residential and commercial clients.
-                    </p>
                     
                    
                     <div class="mt-4 flex gap-2">
-                        <a href="{% url "contractor_detail" business.city.slug business.category.slug business.slug %}" class="flex-1 text-center px-4 py-2.5 bg-[#A20513] hover:bg-rose-700 text-white text-sm font-medium rounded-xl transition">View Details</a>
+                        <a href="{% url "contractor_detail" business.slug %}" class="flex-1 text-center px-4 py-2.5 bg-[#A20513] hover:bg-rose-700 text-white text-sm font-medium rounded-xl transition">View Details</a>
                         <a href="https://wa.me/916202005500?text=Hi%20FireSeva!%20I%20want%20to%20know%20more%20about%20{{ business.name|urlencode }}%20in%20{{ business.city.name|urlencode }}." target="_blank"
                            class="flex-1 text-center px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-xl transition">
                             <span class="flex items-center justify-center gap-1">

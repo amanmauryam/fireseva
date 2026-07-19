@@ -63,7 +63,7 @@ class BusinessAdmin(admin.ModelAdmin):
                 phone = row[1]
                 google_map_image = row[2]
                 address = row[3]
-                sub_category = row[4]
+                rating = row[4]
                 if not name:
                     errors.append(f"Row {row_number}: Name is missing.")
                     continue
@@ -80,19 +80,19 @@ class BusinessAdmin(admin.ModelAdmin):
                     state=state,
                     city=city,
                     category=category,
-                    sub_category = sub_category
-                )
+                    rating = rating
+                    )
                 success_count= success_count+1
             messages.success(request,f"{success_count} businesses imported successfully.")
             for error in errors:
                 messages.error(request, error)
             return redirect(request.path)    
         states = State.objects.all()
-        category = Category.objects.all()
-        cities = City.objects.all()
+        categories = Category.objects.all()
+        cities = City.objects.none()
         context ={
             'states': states,
-            'category': category,
+            'categories': categories,
             'cities': cities
         }
 

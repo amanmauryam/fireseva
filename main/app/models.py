@@ -14,6 +14,50 @@ from django.conf import settings
 from django_ckeditor_5.fields import CKEditor5Field
 from django.urls import reverse
 
+
+def convert_image_to_webp(instance, field_name):
+    image_field = getattr(instance, field_name)
+
+    if not image_field:
+        return False
+
+    try:
+        img = Image.open(image_field.path)
+
+        if img.mode in ("RGBA", "P"):
+            img = img.convert("RGB")
+
+        # Resize
+        img.thumbnail((1200, 1200))
+
+        buffer = BytesIO()
+        img.save(
+            buffer,
+            format="WEBP",
+            quality=80,
+            optimize=True,
+        )
+
+        filename = os.path.splitext(
+            os.path.basename(image_field.name)
+        )[0] + ".webp"
+
+        if os.path.exists(image_field.path):
+            os.remove(image_field.path)
+
+        image_field.save(
+            filename,
+            ContentFile(buffer.getvalue()),
+            save=False,
+        )
+
+        return True
+
+    except Exception:
+        return False    
+
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)
@@ -27,6 +71,7 @@ class Category(models.Model):
         blank=True,
         null=True,
     )
+    one_line = models.CharField(max_length=50,blank=True)
     description = models.TextField(blank=True)
     use_cases = models.TextField(blank=True)
 
@@ -111,7 +156,10 @@ class Business(models.Model):
         blank=True,
         related_name="businesses",
     )
-    category = models.ForeignKey("Category",on_delete=models.CASCADE)
+    category = models.ManyToManyField(
+        Category,
+        related_name="Businesses"
+    )
     sub_category = models.CharField(max_length=100, blank=True)
     state = models.ForeignKey("State",on_delete=models.CASCADE)
     city = ChainedForeignKey(
@@ -133,6 +181,7 @@ class Business(models.Model):
         decimal_places=1, 
         default=3.7
     )
+    description = models.TextField(max_length=100, blank=True)
     address = models.TextField()
     google_map_image = models.URLField(blank=True, null=True)
     image = models.ImageField(
@@ -145,7 +194,53 @@ class Business(models.Model):
         blank=True,
         null=True,
     )
+    project_image1 = models.ImageField(
+    upload_to="business/projects/",
+    blank=True,
+    null=True,
+    )
+    project_caption1 = models.CharField(max_length=200, blank=True)
+    project_location1 = models.CharField(max_length=200, blank=True)
+    project_image2 = models.ImageField(
+    upload_to="business/projects/",
+    blank=True,
+    null=True,
+    )
+    project_caption2 = models.CharField(max_length=200, blank=True)
+    project_location2 = models.CharField(max_length=200, blank=True)
+    project_image3 = models.ImageField(
+    upload_to="business/projects/",
+    blank=True,
+    null=True,
+    )
+    project_caption3 = models.CharField(max_length=200, blank=True)
+    project_location3 = models.CharField(max_length=200, blank=True)
+    project_image4 = models.ImageField(
+    upload_to="business/projects/",
+    blank=True,
+    null=True,
+    )
+    project_caption4 = models.CharField(max_length=200, blank=True)
+    project_location4 = models.CharField(max_length=200, blank=True)
     is_featured = models.BooleanField(default=False)
+    STATUS = [
+    ('V', 'Verified'),
+    ('P', 'Pending'),
+    ]
+    status = models.CharField(
+        max_length=2,
+        choices=STATUS,
+        default='P',
+    )
+    PROVIDES = [
+    ('P', 'Pan indai'),
+    ('R', 'Regional'),
+    ]
+    provides = models.CharField(
+        max_length=2,
+        choices=PROVIDES,
+        default='R',
+    )
     created_at = models.DateTimeField(default=timezone.now)
     def get_absolute_url(self):
         return reverse(
@@ -158,44 +253,26 @@ class Business(models.Model):
         )
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+         self.slug = slugify(self.name)
 
+    # Pehle original files save hongi
         super().save(*args, **kwargs)
 
-        if self.image:
-            img = Image.open(self.image.path)
+        updated_fields = []
 
-            # RGB conversion
-            if img.mode in ("RGBA", "P"):
-                img = img.convert("RGB")
+        for field in [
+        "image",
+        "project_image1",
+        "project_image2",
+        "project_image3",
+        "project_image4",
+        ]:
+         if convert_image_to_webp(self, field):
+            updated_fields.append(field)
 
-            # Resize (optional)
-            img.thumbnail((1200, 1200))
-
-            # WebP memory buffer
-            buffer = BytesIO()
-            img.save(
-                buffer,
-                format="WEBP",
-                quality=80,
-                optimize=True,
-            )
-
-            # New filename
-            filename = os.path.splitext(os.path.basename(self.image.name))[0] + ".webp"
-
-            # Delete old file
-            if os.path.exists(self.image.path):
-                os.remove(self.image.path)
-
-            # Save webp image
-            self.image.save(
-                filename,
-                ContentFile(buffer.getvalue()),
-                save=False,
-            )
-
-            super().save(update_fields=["image"])
+            if updated_fields:
+                super().save(update_fields=updated_fields)
+    
     def __str__(self):
          return self.name
 

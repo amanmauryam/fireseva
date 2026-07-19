@@ -6,6 +6,21 @@
 <!-- Hero -->
 <section class="pt-28 pb-16" style="background-color: #C0DFEE;">
   <div class="max-w-4xl mx-auto px-4 text-center">
+    <nav aria-label="Breadcrumb" class="py-4">
+    <ol class="flex items-center gap-2 text-sm text-gray-600">
+        <li>
+            <a href="{% url 'home' %}" class="hover:text-orange-600 transition-colors">
+                Home
+            </a>
+        </li>
+
+        <li aria-hidden="true">/</li>
+
+        <li class="font-medium text-gray-900" aria-current="page">
+            Blog
+        </li>
+    </ol>
+   </nav>
     <span class="inline-block bg-white/70 text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Blog</span>
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">Fire Safety Knowledge Hub</h1>
     <p class="mt-4 text-base md:text-lg text-gray-700 max-w-2xl mx-auto">Expert guides, compliance updates, and tips to keep your property safe and legally compliant.</p>

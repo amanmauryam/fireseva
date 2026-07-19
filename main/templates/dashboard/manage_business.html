@@ -1,8 +1,8 @@
 {% extends "dashboard/dashboard_base.html" %}
 
-{% block title %}Manage Businesses - HeavyRent{% endblock %}
+{% block title %}Manage Businesses - FireSeva{% endblock %}
 {% block page_title %}Manage Businesses{% endblock %}
-{% block page_subtitle %}Manage your rental equipment listings{% endblock %}
+{% block page_subtitle %}Manage your fire safety business listings{% endblock %}
 
 {% block content %}
 
@@ -10,8 +10,8 @@
 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
     <div>
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-yellow-100 flex items-center justify-center">
-                <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-[#A20513]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                 </svg>
             </div>
@@ -21,13 +21,10 @@
             </div>
         </div>
     </div>
-    <a href="{% url 'manage_business_add' %}" class="btn-primary w-full sm:w-auto justify-center bg-yellow-500 py-3 px-3 hover:bg-yellow-600 text-black font-semibold rounded-xl transition">
-        
+    <a href="{% url 'manage_business_add' %}" class="btn-primary w-full sm:w-auto justify-center bg-[#A20513] text-white px-3 py-3 hover:bg-rose-700 rounded-xl transition">
         + Add Business
     </a>
 </div>
-
-
 
 <!-- Table -->
 <div class="card overflow-hidden">
@@ -47,7 +44,7 @@
             </thead>
             <tbody class="divide-y divide-gray-100">
                 {% for business in businesses %}
-                <tr class="hover:bg-yellow-50/50 transition group">
+                <tr class="hover:bg-red-50/50 transition group">
                     <td class="px-5 py-4">
                         <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden ring-1 ring-gray-200">
                             {% if business.image %}
@@ -60,10 +57,10 @@
                         </div>
                     </td>
                     <td class="px-5 py-4">
-                        <p class="font-semibold text-gray-900 group-hover:text-yellow-700 transition">{{ business.name }}</p>
+                        <p class="font-semibold text-gray-900 group-hover:text-[#A20513] transition">{{ business.name }}</p>
                     </td>
                     <td class="px-5 py-4">
-                        <span class="badge-blue">{{ business.categories.name }}</span>
+                        <span class="badge-blue">{{ business.category.name }}</span>
                     </td>
                     <td class="px-5 py-4 text-gray-600">
                         <span class="flex items-center gap-1">
@@ -81,7 +78,7 @@
                     <td class="px-5 py-4 text-right">
                         <div class="flex items-center justify-end gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
 
-                            <a href="{% url 'manage_business_edit' business.pk %}" class="btn-ghost text-gray-400 hover:text-yellow-600 hover:bg-yellow-50" title="Edit">
+                            <a href="{% url 'manage_business_edit' business.pk %}" class="btn-ghost text-gray-400 hover:text-[#A20513] hover:bg-red-50" title="Edit">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                 </svg>
@@ -107,7 +104,7 @@
             <a href="?page={{ businesses.previous_page_number }}" class="px-3 py-1.5 text-xs font-semibold text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition">&larr; Prev</a>
             {% endif %}
             {% for num in businesses.paginator.page_range %}
-            <a href="?page={{ num }}" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition {% if num == businesses.number %}bg-yellow-500 text-black shadow-sm{% else %}text-gray-600 bg-white border border-gray-200 hover:bg-gray-50{% endif %}">{{ num }}</a>
+            <a href="?page={{ num }}" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition {% if num == businesses.number %}bg-[#A20513] text-white shadow-sm{% else %}text-gray-600 bg-white border border-gray-200 hover:bg-gray-50{% endif %}">{{ num }}</a>
             {% endfor %}
             {% if businesses.has_next %}
             <a href="?page={{ businesses.next_page_number }}" class="px-3 py-1.5 text-xs font-semibold text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition">Next &rarr;</a>
@@ -118,13 +115,13 @@
     {% else %}
     <!-- Empty State -->
     <div class="py-16 px-6 text-center animate-in">
-        <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-yellow-100 to-yellow-50 rounded-3xl flex items-center justify-center shadow-sm">
-            <svg class="w-12 h-12 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-red-100 to-red-50 rounded-3xl flex items-center justify-center shadow-sm">
+            <svg class="w-12 h-12 text-[#A20513]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
             </svg>
         </div>
         <h3 class="text-xl font-bold text-gray-900 mb-2">No businesses added yet</h3>
-        <p class="text-sm text-gray-400 mb-8 max-w-md mx-auto leading-relaxed">List your heavy equipment rental business to start receiving leads from customers across India.</p>
+        <p class="text-sm text-gray-400 mb-8 max-w-md mx-auto leading-relaxed">List your fire safety business to start receiving leads from customers across India.</p>
         <a href="{% url 'manage_business_add' %}" class="btn-primary">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>

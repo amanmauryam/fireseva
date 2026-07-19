@@ -140,7 +140,14 @@ def logout_view(request):
     return redirect('home')
 
 
-
+@heavy_ratelimit(rate='60/m')
+def load_cities(request):
+    state_id = request.GET.get("state_id")
+    if not state_id:
+        return JsonResponse([], safe=False)
+    cities = City.objects.filter(state_id=state_id).order_by("name")
+    data = [{"id": c.pk, "name": c.name} for c in cities]
+    return JsonResponse(data, safe=False)
 
 def home(request):
     return render(request,"pages/home.html")
@@ -166,20 +173,22 @@ def find_contractors(request):
     
     return render(request, 'pages/find_contractor.html',context)
 
-def contractor_detail(request, category_slug, business_slug,city_slug):
+def contractor_detail(request,business_slug):
     business = get_object_or_404(
-        Business.objects.select_related("category"),
+        Business.objects.select_related(
+            "city",
+            "state",
+            "user",
+        ).prefetch_related("category"),
         slug=business_slug,
-        category__slug=category_slug,
-        city__slug=city_slug,
     )
     similar_businesses = (
-    Business.objects
-    .filter(
-        category__slug=category_slug
-    )
-    .exclude(slug=business_slug)
-    .order_by('?')[:4]
+        Business.objects.filter(
+            category__in=business.category.all()
+        )
+        .exclude(id=business.id)
+        .distinct()
+        .order_by("?")[:4]
     )
     return render(request, 'pages/contractor_detail.html',{ 'business':business,'similar_businesses':similar_businesses})
 
