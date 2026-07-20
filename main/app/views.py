@@ -11,7 +11,6 @@ from django.core.validators import validate_email
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
-
 from .utils import send_telegram_message
 from .decorators import heavy_ratelimit
 from django.views.decorators.csrf import ensure_csrf_cookie
