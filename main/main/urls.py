@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from app.sitemaps import sitemaps
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('802134admin/', admin.site.urls),
     path('',include('app.urls')),
     path('dashboard/',include('dashboard.urls')),
     path('chaining/', include('smart_selects.urls')),
