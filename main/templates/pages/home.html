@@ -26,31 +26,31 @@
 
             <div class="flex flex-wrap items-center gap-3 mt-6 justify-center lg:justify-start">
               <a href="{% url "find_contractors" %}" class="px-6 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Find Contractors</a>
-              <a href="javascript:void(0)" onclick="openEnquiry()" class="px-6 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Enquiry</a>
+              <button type="button" onclick="openEnquiry()" class="px-6 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Enquiry</button>
             </div>
 
             <div class="flex flex-wrap items-center gap-4 mt-6 text-sm text-gray-600 justify-center lg:justify-start">
               <span class="flex items-center gap-1">
-                <svg class="w-4 h-4 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                <img  decoding="async" loading="lazy" src="{% static 'inspector.svg' %}" alt="inspector icon" class="w-5 h-5">
                 Inspector
               </span>
               <span class="flex items-center gap-1">
-                <svg class="w-4 h-4 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                 <img  decoding="async" loading="lazy" src="{% static 'auditor.svg' %}" alt="auditor icon" class="w-5 h-5">
                 Auditor
               </span>
               <span class="flex items-center gap-1">
-                <svg class="w-4 h-4 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                <img  decoding="async" loading="lazy" src="{% static 'contractor.svg' %}" alt="contractor icon" class="w-5 h-5">
                 Contractor
               </span>
               <span class="text-gray-500">|</span>
-              <span class="font-semibold text-gray-800">500+ Verified Experts active in your area</span>
+              <span class="font-semibold text-gray-800">50+ Verified Experts active in your city</span>
             </div>
           </div>
 
           <!-- Right Content -->
           <div class="flex-1 w-full max-w-lg">
             <div class="relative">
-              <img src="https://i.pinimg.com/1200x/ce/69/c2/ce69c233ce9b1a14da9b86e8f4e0d09b.jpg" alt="Hero" class="w-full rounded-2xl shadow-lg">
+              <img decoding="async" loading="lazy" src="{% static "hero.jpg" %}" alt="Hero Image" class="w-full rounded-2xl shadow-lg">
               <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur rounded-xl p-4 shadow">
                 <p class="text-xs text-gray-500 font-medium">Featured Installation</p>
                 <p class="text-sm font-bold text-gray-900">Cyber City Tech Park</p>
@@ -91,8 +91,8 @@
             <h3 class="text-lg font-bold text-gray-900 mt-4">Fire Alarm Installation</h3>
             <p class="text-sm text-gray-600 mt-2">Advanced smoke and heat detection systems with centralized control monitoring.</p>
             <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-              <span class="text-xs font-semibold text-[#A20513]">120+ Experts</span>
-              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+              <span class="text-xs font-semibold text-[#A20513]">12+ Experts</span>
+              <a href="{% url "all_service" %}" class="text-gray-400 hover:text-[#A20513] transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -106,8 +106,8 @@
             <h3 class="text-lg font-bold text-gray-900 mt-4">Fire Hydrant System</h3>
             <p class="text-sm text-gray-600 mt-2">Industrial grade hydrant networks and pipeline infrastructure for high-risk zones.</p>
             <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-              <span class="text-xs font-semibold text-[#A20513]">85+ Experts</span>
-              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+              <span class="text-xs font-semibold text-[#A20513]">28+ Experts</span>
+              <a href="{% url "all_service" %}" class="text-gray-400 hover:text-[#A20513] transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -121,8 +121,8 @@
             <h3 class="text-lg font-bold text-gray-900 mt-4">Sprinkler Installation</h3>
             <p class="text-sm text-gray-600 mt-2">Automatic fire suppression systems tailored for commercial and residential spaces.</p>
             <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-              <span class="text-xs font-semibold text-[#A20513]">95+ Experts</span>
-              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+              <span class="text-xs font-semibold text-[#A20513]">24+ Experts</span>
+              <a href="{% url "all_service" %}" class="text-gray-400 hover:text-[#A20513] transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -136,8 +136,8 @@
             <h3 class="text-lg font-bold text-gray-900 mt-4">Fire Extinguisher Services</h3>
             <p class="text-sm text-gray-600 mt-2">Certified refilling, hydro-testing, and scheduled maintenance of all extinguisher types.</p>
             <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-              <span class="text-xs font-semibold text-[#A20513]">200+ Experts</span>
-              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+              <span class="text-xs font-semibold text-[#A20513]">20+ Experts</span>
+              <a href="{% url "all_service" %}" class="text-gray-400 hover:text-[#A20513] transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -151,8 +151,8 @@
             <h3 class="text-lg font-bold text-gray-900 mt-4">Fire Safety Audit</h3>
             <p class="text-sm text-gray-600 mt-2">Comprehensive property risk assessments and compliance gap analysis reports.</p>
             <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-              <span class="text-xs font-semibold text-[#A20513]">50+ Experts</span>
-              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+              <span class="text-xs font-semibold text-[#A20513]">35+ Experts</span>
+              <a href="{% url "all_service" %}" class="text-gray-400 hover:text-[#A20513] transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -166,8 +166,8 @@
             <h3 class="text-lg font-bold text-gray-900 mt-4">Fire NOC Assistance</h3>
             <p class="text-sm text-gray-600 mt-2">End-to-end guidance for obtaining government No Objection Certificates.</p>
             <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-              <span class="text-xs font-semibold text-[#A20513]">40+ Consultants</span>
-              <a href="" class="text-gray-400 hover:text-[#A20513] transition">
+              <span class="text-xs font-semibold text-[#A20513]">32+ Consultants</span>
+              <a href="{% url "all_service" %}" class="text-gray-400 hover:text-[#A20513] transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -223,7 +223,7 @@
 
           <!-- Right Image -->
           <div class="flex-1 w-full max-w-lg">
-            <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="Fire Safety" class="w-full h-96 object-cover rounded-2xl shadow-lg">
+            <img decoding="async" loading="lazy" src="{% static "home1.jpeg" %}" alt="Fire Safety" class="w-full h-96 object-cover rounded-2xl shadow-lg">
           </div>
 
         </div>
@@ -316,7 +316,7 @@
             <h3 class="text-lg font-bold text-gray-900 mt-5">Post Requirement</h3>
             <p class="text-sm text-gray-600 mt-2">Describe your fire safety needs in a simple form to get started.</p>
           </div>
-
+          
           <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
             <div class="w-14 h-14 bg-[#C0DFEE] rounded-xl flex items-center justify-center mx-auto">
               <svg class="w-7 h-7 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
@@ -324,6 +324,7 @@
             <h3 class="text-lg font-bold text-gray-900 mt-5">Get Quotes</h3>
             <p class="text-sm text-gray-600 mt-2">Receive competitive transparent quotes from verified local experts.</p>
           </div>
+        
 
           <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
             <div class="w-14 h-14 bg-[#C0DFEE] rounded-xl flex items-center justify-center mx-auto">
@@ -383,9 +384,9 @@
           <!-- Right: Image with overlay -->
           <div class="flex-1 w-full max-w-lg">
             <div class="relative">
-              <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="Response" class="w-full h-96 object-cover rounded-2xl shadow-lg">
+              <img decoding="async" loading="lazy" src="{% static "home2.jpeg" %}" alt="Response Image" class="w-full h-96 object-cover rounded-2xl shadow-lg">
               <div class="absolute inset-0 bg-black/40 rounded-2xl flex flex-col items-center justify-center">
-                <span class="text-6xl sm:text-7xl font-bold text-white">24h</span>
+                <span class="text-6xl sm:text-7xl font-bold text-white">2h</span>
                 <span class="text-white text-lg sm:text-xl font-medium mt-2">Average Response Time</span>
               </div>
             </div>
@@ -428,15 +429,15 @@
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
           <div>
-            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">15k+</p>
+            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">1k+</p>
             <p class="text-gray-700 mt-1 font-medium">Audits Done</p>
           </div>
           <div>
-            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">2,500+</p>
+            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">100+</p>
             <p class="text-gray-700 mt-1 font-medium">Verified Partners</p>
           </div>
           <div>
-            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">100%</p>
+            <p class="text-3xl md:text-4xl font-bold text-[#A20513]">98%</p>
             <p class="text-gray-700 mt-1 font-medium">Compliance Rate</p>
           </div>
           <div>
@@ -463,60 +464,34 @@
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
+          {% for business in fetured_businesses %}
+
           <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-            <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="Agni Solutions" class="w-full h-40 object-cover">
+            {% if business.image %}
+            <img decoding="async" loading="lazy" src="{{business.image.url}}" alt="{{business.name}}" class="w-full h-40 object-cover">
+            {% else %}
+            <img decoding="async" loading="lazy" src="{% static "logo.webp" %}" alt="{{business.name}}" class="w-full h-40 object-cover">
+            {% endif %}
             <div class="p-6">
-              <span class="inline-block bg-[#A20513]/10 text-[#A20513] px-2 py-0.5 rounded-full text-xs font-medium">Contractor</span>
-              <h3 class="text-lg font-bold text-gray-900 mt-3">Agni Solutions Pvt Ltd</h3>
-              <p class="text-sm text-gray-500">Mumbai &bull; 12 years exp.</p>
-              <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm font-medium">
+              <span class="inline-block bg-[#A20513]/10 text-[#A20513] px-2 py-0.5 rounded-full text-xs font-medium">{{business.get_status_display}}</span>
+              <h3 class="text-lg font-bold text-gray-900 mt-3">{{business.name|title}}</h3>
+              <div class="flex items-center gap-1 mt-2 text-amber-700 text-sm font-medium">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                4.9
+                {{business.rating}}
               </div>
+              
               <div class="flex flex-wrap gap-2 mt-3">
-                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Alarm Systems</span>
-                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Maintenance</span>
+                {% for category in business.category.all %}
+                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">{{category.name|title}}</span>
+                {% endfor %}
               </div>
-              <a href="" class="mt-4 inline-block w-full text-center px-4 py-2 border border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">View Profile</a>
+              <a href="{% url "contractor_detail" business.slug %}" class="mt-4 inline-block w-full text-center px-4 py-2 border border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">View Profile</a>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-            <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="SafeGuard Fire Systems" class="w-full h-40 object-cover">
-            <div class="p-6">
-              <span class="inline-block bg-[#A20513]/10 text-[#A20513] px-2 py-0.5 rounded-full text-xs font-medium">Contractor</span>
-              <h3 class="text-lg font-bold text-gray-900 mt-3">SafeGuard Fire Systems</h3>
-              <p class="text-sm text-gray-500">Delhi &bull; 8 years exp.</p>
-              <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm font-medium">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                4.8
-              </div>
-              <div class="flex flex-wrap gap-2 mt-3">
-                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Industrial Hydrants</span>
-                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">NOC Help</span>
-              </div>
-              <a href="" class="mt-4 inline-block w-full text-center px-4 py-2 border border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">View Profile</a>
-            </div>
-          </div>
+          {% endfor %}
 
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-            <img src="https://i.pinimg.com/1200x/b4/4c/b6/b44cb69afdd14b44d9c985f1d73eae98.jpg" alt="Elite Safety Hub" class="w-full h-40 object-cover">
-            <div class="p-6">
-              <span class="inline-block bg-[#A20513]/10 text-[#A20513] px-2 py-0.5 rounded-full text-xs font-medium">Contractor</span>
-              <h3 class="text-lg font-bold text-gray-900 mt-3">Elite Safety Hub</h3>
-              <p class="text-sm text-gray-500">Bangalore &bull; 15 years exp.</p>
-              <div class="flex items-center gap-1 mt-2 text-yellow-500 text-sm font-medium">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                5.0
-              </div>
-              <div class="flex flex-wrap gap-2 mt-3">
-                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Fire Audits</span>
-                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">Sprinklers</span>
-              </div>
-              <a href="" class="mt-4 inline-block w-full text-center px-4 py-2 border border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">View Profile</a>
-            </div>
-          </div>
-
+         
         </div>
       </div>
     </section>
@@ -539,26 +514,15 @@
 
         <div class="grid sm:grid-cols-3 gap-6 mt-8">
 
+            {% for blog in featured_blogs %}
           <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-2 py-0.5 rounded-full text-xs font-medium">Norms</span>
-            <h3 class="text-base font-bold text-gray-900 mt-3">New Indian Fire Safety Norms 2024</h3>
-            <p class="text-sm text-gray-600 mt-2">Understand the key updates in the NBC part 4 for commercial buildings.</p>
-            <a href="" class="inline-flex items-center gap-1 text-[#A20513] hover:text-rose-700 font-medium text-sm mt-3">GUIDE <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-2 py-0.5 rounded-full text-xs font-medium">{{blog.category}}</span>
+            <h3 class="text-base font-bold text-gray-900 mt-3">{{blog.title}}</h3>
+            <p class="text-sm text-gray-600 mt-2">{{blog.excerpt}}</p>
+            <a href="{% url "blog_detail" blog.slug %}" class="inline-flex items-center gap-1 text-[#A20513] hover:text-rose-700 font-medium text-sm mt-3">Learn more... <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
           </div>
-
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-2 py-0.5 rounded-full text-xs font-medium">NOC</span>
-            <h3 class="text-base font-bold text-gray-900 mt-3">Complete NOC Checklist for Malls</h3>
-            <p class="text-sm text-gray-600 mt-2">A step-by-step document guide to clear your Fire NOC without delays.</p>
-            <a href="" class="inline-flex items-center gap-1 text-[#A20513] hover:text-rose-700 font-medium text-sm mt-3">PROCESS <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
-          </div>
-
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-            <span class="inline-block bg-[#C0DFEE] text-gray-800 px-2 py-0.5 rounded-full text-xs font-medium">Maintenance</span>
-            <h3 class="text-base font-bold text-gray-900 mt-3">Quarterly Maintenance Tips</h3>
-            <p class="text-sm text-gray-600 mt-2">Preventive maintenance routines to keep your fire extinguishers ready.</p>
-            <a href="" class="inline-flex items-center gap-1 text-[#A20513] hover:text-rose-700 font-medium text-sm mt-3">MAINTENANCE <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
-          </div>
+          {% endfor %}
+          
 
         </div>
       </div>
@@ -576,11 +540,11 @@
             <div class="flex flex-wrap items-center gap-4 mt-6 justify-center lg:justify-start">
               <a href="tel:+916202005500" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#A20513] hover:bg-gray-100 font-bold rounded-xl transition text-lg">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                +91 99343 68451
+                +91 6202005500
               </a>
-              <a href="javascript:void(0)" onclick="openEnquiry()" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white hover:bg-white hover:text-[#A20513] font-semibold rounded-xl transition">
+              <button type="button" onclick="openEnquiry()" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white hover:bg-white hover:text-[#A20513] font-semibold rounded-xl transition">
                 Send Emergency Request
-              </a>
+              </button>
             </div>
           </div>
           <div class="flex-shrink-0">

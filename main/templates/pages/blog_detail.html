@@ -1,11 +1,103 @@
 {% extends "layout.html" %}
 {% load static %}
 
-{% block title %}{{ blog.title }} - FireSeva Blog{% endblock %}
-
-{% block meta %}
-<meta name="description" content="{{ blog.excerpt|default:blog.meta_description }}">
+{% block title %}
+{{ blog.meta_title|default:blog.title }} | FireSeva
 {% endblock %}
+
+{% block description %}
+{{ blog.meta_description }}
+{% endblock %}
+
+{% block robots %}
+index, follow
+{% endblock %}
+
+{% block og_title %}
+{{ blog.meta_title|default:blog.title }}
+{% endblock %}
+
+{% block og_description %}
+{{ blog.meta_description }}
+{% endblock %}
+
+{% block twitter_title %}
+{{ blog.meta_title|default:blog.title }}
+{% endblock %}
+
+{% block twitter_description %}
+{{ blog.meta_description }}
+{% endblock %}
+{% block extra_schema %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"{{ blog.title|escapejs }}",
+  "url":"{{ request.build_absolute_uri }}",
+  "description":"{{ blog.meta_description|escapejs }}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {
+      "@type":"ListItem",
+      "position":1,
+      "name":"Home",
+      "item":"https://fireseva.com/"
+    },
+    {
+      "@type":"ListItem",
+      "position":2,
+      "name":"Blog",
+      "item":"https://fireseva.com/blog/"
+    },
+    {
+      "@type":"ListItem",
+      "position":3,
+      "name":"{{ blog.title|escapejs }}",
+      "item":"{{ request.build_absolute_uri }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BlogPosting",
+  "headline":"{{ blog.title|escapejs }}",
+  "description":"{{ blog.meta_description|escapejs }}",
+   {% if blog.image %}
+  "image":"{{ request.scheme }}://{{ request.get_host }}{{ blog.image.url }}",
+  {% endif %}  
+  "datePublished":"{{ blog.created_at|date:'c' }}",
+  "dateModified":"{{ blog.updated_at|date:'c' }}",
+  "author":{
+      "@type":"Organization",
+      "name":"FireSeva"
+  },
+  "publisher":{
+      "@type":"Organization",
+      "name":"FireSeva",
+      "logo":{
+          "@type":"ImageObject",
+          "url":"https://fireseva.com/static/logo.webp"
+      }
+  },
+  "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"{{ request.build_absolute_uri }}"
+  }
+}
+</script>
+
+{% endblock extra_schema %}
+
+
+
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'blog.css' %}">

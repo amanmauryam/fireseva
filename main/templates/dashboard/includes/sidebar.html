@@ -1,17 +1,13 @@
+{% load static %}
 <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity duration-300" onclick="toggleSidebar()"></div>
 
 <aside id="dashboard-sidebar" class="fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-gray-100 shadow-xl shadow-gray-200/30 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-out flex flex-col">
 
     <div class="h-16 flex items-center gap-3 px-5 border-b border-gray-50 shrink-0">
-        <div class="w-9 h-9 rounded-xl bg-[#A20513] flex items-center justify-center shadow-sm shadow-red-200/50">
-            <span class="text-sm font-black text-white">FS</span>
-        </div>
-        <div>
-            <a href="{% url 'manage_business' %}" class="text-base font-bold text-gray-900 leading-none tracking-tight block">
-                Fire<span class="text-[#A20513]">Seva</span>
-            </a>
-            <span class="text-[9px] font-semibold text-gray-400 tracking-[0.15em] uppercase">Owner Dashboard</span>
-        </div>
+        <a href="{% url 'manage_business' %}" class="flex items-center gap-3">
+            <img src="{% static 'logo.webp' %}" alt="FireSeva" class="h-8 w-auto">
+            <span class="text-[9px] font-semibold text-gray-400 tracking-[0.15em] uppercase mt-5">Owner Dashboard</span>
+        </a>
     </div>
 
     <nav class="flex-1 px-3 py-5 space-y-0.5 overflow-y-auto overflow-x-hidden">

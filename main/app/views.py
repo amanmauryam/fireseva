@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render, get_object_or_404,redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Category, Lead, City, Business, Blog,Blog,BlogView,Blogcategory
+from .models import Category, Lead, City, Business, Blog,Blog,BlogView,Blogcategory, ServiceCityPage
 from django.core.paginator import Paginator
 import requests
 from django.contrib.auth.models import User
@@ -11,10 +11,42 @@ from django.core.validators import validate_email
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
-from .utils import send_telegram_message
+from .utils import send_telegram_message,generate_faq_schema
 from .decorators import heavy_ratelimit
 from django.views.decorators.csrf import ensure_csrf_cookie
 # Create your views here.
+def robots_txt(request):
+    return render(request, "robots.txt", content_type="text/plain")
+
+
+def service_deatil(request, service_slug):
+    service = get_object_or_404(Category, slug=service_slug)
+    businesses = Business.objects.filter(category=service).select_related('city', 'state')[:6]
+    cities = City.objects.filter(business__category=service).distinct()
+    categories = Category.objects.exclude(id=service.id)[:4]
+
+    context = {
+        'service': service,
+        'businesses': businesses,
+        'cities': cities,
+        'categories': categories,
+    }
+    return render(request, 'pages/service_detail.html', context)
+
+def service_city_page(request, service_slug, city_slug):
+    service = get_object_or_404(Category, slug=service_slug)
+    city = get_object_or_404(City, slug=city_slug)
+    page = get_object_or_404(ServiceCityPage, service=service, city=city)
+    businesses = Business.objects.filter(category=service, city=city).select_related('city', 'state')[:6]
+    faq_schema = generate_faq_schema(page.faq)
+    return render(request, 'pages/servicecitypage.html', {
+        'page': page,
+        'service': service,
+        'city': city,
+        'businesses': businesses,
+        "faq_schema": json.dumps(faq_schema, ensure_ascii=False)
+    })
+
 
 
 @ensure_csrf_cookie
@@ -148,8 +180,19 @@ def load_cities(request):
     data = [{"id": c.pk, "name": c.name} for c in cities]
     return JsonResponse(data, safe=False)
 
+
+@heavy_ratelimit(rate='16/m')
 def home(request):
-    return render(request,"pages/home.html")
+    featured_blogs = Blog.objects.filter(is_featured = True)
+    fetured_businesses = Business.objects.filter(is_featured = True)
+    categories = Category.objects.all()
+    context = {
+        "fetured_businesses":fetured_businesses,
+        "featured_blogs":featured_blogs,
+        "categories":categories,
+    }
+
+    return render(request,"pages/home.html",context)
 
 def find_contractors(request):
     city_slug = request.GET.get("city")

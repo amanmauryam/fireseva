@@ -1,5 +1,69 @@
 
 {% extends "layout.html" %}
+{% load static %}
+{% block title %}
+About FireSeva | India's Fire Safety Contractor Platform
+{% endblock %}
+
+{% block description %}
+Learn about FireSeva, our mission, and how we connect customers with verified fire safety contractors across India for fire protection services.
+{% endblock %}
+
+{% block robots %}
+index, follow
+{% endblock %}
+
+{% block og_title %}
+About FireSeva
+{% endblock %}
+
+{% block og_description %}
+Learn about FireSeva and our mission to simplify finding verified fire safety contractors across India.
+{% endblock %}
+
+{% block twitter_title %}
+About FireSeva
+{% endblock %}
+
+{% block twitter_description %}
+Learn about FireSeva and our mission to improve fire safety services across India.
+{% endblock %}
+{% block extra_schema %}
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"About FireSeva",
+  "url":"{{ request.build_absolute_uri }}",
+  "description":"Learn about FireSeva and our mission to connect customers with verified fire safety contractors."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {
+      "@type":"ListItem",
+      "position":1,
+      "name":"Home",
+      "item":"https://fireseva.com/"
+    },
+    {
+      "@type":"ListItem",
+      "position":2,
+      "name":"About",
+      "item":"{{ request.build_absolute_uri }}"
+    }
+  ]
+}
+</script>
+
+
+
+{% endblock extra_schema %}
 
 {% block content %}
 
@@ -52,15 +116,15 @@
   <div class="max-w-6xl mx-auto px-4">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
       <div>
-        <p class="text-3xl md:text-4xl font-bold text-[#A20513]">500+</p>
+        <p class="text-3xl md:text-4xl font-bold text-[#A20513]">100+</p>
         <p class="text-gray-800 mt-1 font-medium">Verified Contractors</p>
       </div>
       <div>
-        <p class="text-3xl md:text-4xl font-bold text-[#A20513]">2,500+</p>
+        <p class="text-3xl md:text-4xl font-bold text-[#A20513]">50+</p>
         <p class="text-gray-800 mt-1 font-medium">Projects Completed</p>
       </div>
       <div>
-        <p class="text-3xl md:text-4xl font-bold text-[#A20513]">15k+</p>
+        <p class="text-3xl md:text-4xl font-bold text-[#A20513]">1k+</p>
         <p class="text-gray-800 mt-1 font-medium">Fire Audits Done</p>
       </div>
       <div>
@@ -141,48 +205,50 @@
     <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Meet Our Team</h2>
     <p class="text-gray-600 mt-2 max-w-xl mx-auto">Passionate professionals committed to making India fire-safe.</p>
     <div class="grid sm:grid-cols-2 gap-8 mt-10 max-w-2xl mx-auto">
+
       <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
         <div class="w-28 h-28 rounded-full overflow-hidden mx-auto border-4 border-[#C0DFEE]">
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&auto=format&fit=crop&q=60" alt="Aditya Raj" class="w-full h-full object-cover">
+          <img  decoding="async" loading="lazy" src="{% static "ankit.webp" %}" alt="Ankit Anand" class="w-full h-full object-cover">
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mt-4">Aditya Raj</h3>
-        <p class="text-xs text-gray-400 uppercase tracking-wide font-medium mt-1">Founder & CEO</p>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Ankit Anand</h3>
+        <p class="text-xs text-gray-400 uppercase tracking-wide font-medium mt-1">Founder</p>
         <div class="mt-4 space-y-2 text-sm text-gray-600">
           <p class="flex items-center justify-center gap-2">
             <svg class="w-4 h-4 text-[#A20513] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
-            B.Tech, IIT Delhi
+            M.Des, NID Bangalore
           </p>
           <p class="flex items-center justify-center gap-2">
             <svg class="w-4 h-4 text-[#A20513] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            New Delhi, India
+            Bangalore, India
           </p>
         </div>
-        <a href="https://linkedin.com/in/adityaraj" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm text-[#A20513] hover:text-rose-700 font-medium transition">
+        <a href="https://www.linkedin.com/in/09ankit?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm text-[#A20513] hover:text-rose-700 font-medium transition">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
           LinkedIn
         </a>
       </div>
       <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
         <div class="w-28 h-28 rounded-full overflow-hidden mx-auto border-4 border-[#C0DFEE]">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=60" alt="Sneha Nair" class="w-full h-full object-cover">
+          <img  decoding="async" loading="lazy" src="{% static "rahul.webp" %}" alt="Rahul Kumar" class="w-full h-full object-cover">
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mt-4">Sneha Nair</h3>
-        <p class="text-xs text-gray-400 uppercase tracking-wide font-medium mt-1">Head of Operations</p>
+        <h3 class="text-lg font-bold text-gray-900 mt-4">Rahul Kumar</h3>
+        <p class="text-xs text-gray-400 uppercase tracking-wide font-medium mt-1">CTO</p>
         <div class="mt-4 space-y-2 text-sm text-gray-600">
           <p class="flex items-center justify-center gap-2">
             <svg class="w-4 h-4 text-[#A20513] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
-            MBA, NMIMS Mumbai
+            MBA, IIM Bangalore
           </p>
           <p class="flex items-center justify-center gap-2">
             <svg class="w-4 h-4 text-[#A20513] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Mumbai, India
+            Bangalore, India
           </p>
         </div>
-        <a href="https://linkedin.com/in/snehanair" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm text-[#A20513] hover:text-rose-700 font-medium transition">
+        <a href="https://www.linkedin.com/in/rahul-kumar-0a9493152?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="mt-4 inline-flex items-center gap-2 text-sm text-[#A20513] hover:text-rose-700 font-medium transition">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
           LinkedIn
         </a>
       </div>
+
     </div>
   </div>
 </section>

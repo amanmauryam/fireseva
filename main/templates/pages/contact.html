@@ -1,6 +1,74 @@
 
 {% extends "layout.html" %}
 {% load static %}
+{% block title %}
+Contact FireSeva | Get in Touch
+{% endblock %}
+
+{% block description %}
+Contact FireSeva for support, business inquiries, partnerships, or assistance in finding verified fire safety contractors across India.
+{% endblock %}
+
+{% block robots %}
+index, follow
+{% endblock %}
+
+{% block og_title %}
+Contact FireSeva | Get in Touch
+{% endblock %}
+
+{% block og_description %}
+Contact FireSeva for support, business inquiries, and fire safety services.
+{% endblock %}
+
+{% block twitter_title %}
+Contact FireSeva | Get in Touch
+{% endblock %}
+
+{% block twitter_description %}
+Need help? Contact FireSeva today.
+{% endblock %}
+{% block extra_schema %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Contact FireSeva",
+  "url":"{{ request.build_absolute_uri }}",
+  "description":"Contact FireSeva for support and business inquiries."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {
+      "@type":"ListItem",
+      "position":1,
+      "name":"Home",
+      "item":"https://fireseva.com/"
+    },
+    {
+      "@type":"ListItem",
+      "position":2,
+      "name":"Contact",
+      "item":"{{ request.build_absolute_uri }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ContactPage",
+  "name":"Contact FireSeva",
+  "url":"{{ request.build_absolute_uri }}"
+}
+</script>
+{% endblock extra_schema %}
+
+
 
 {% block content %}
 
@@ -49,7 +117,7 @@
           </div>
         </div>
 
-        <div class="flex items-start gap-4">
+        {% comment %} <div class="flex items-start gap-4">
           <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center shrink-0">
             <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           </div>
@@ -58,7 +126,7 @@
             <a href="mailto:vinit.singh9934@gmail.com" class="text-gray-600 hover:text-[#A20513] transition text-lg font-semibold">vinit.singh9934@gmail.com</a>
             <p class="text-sm text-gray-400 mt-0.5">We reply within 24 hours</p>
           </div>
-        </div>
+        </div> {% endcomment %}
 
         <div class="flex items-start gap-4">
           <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center shrink-0">
@@ -67,7 +135,7 @@
           <div>
             <h3 class="font-bold text-gray-900">Office</h3>
             <p class="text-gray-600">FireSeva Headquarters</p>
-            <p class="text-sm text-gray-400 mt-0.5">Mumbai, Maharashtra, India</p>
+            <p class="text-sm text-gray-400 mt-0.5">Noida Sector 62, Utter Pradesh, India</p>
           </div>
         </div>
 
@@ -152,11 +220,11 @@
       <p class="text-sm text-gray-600 mt-1">Emergency Support</p>
     </div>
     <div class="text-center p-6 bg-gray-50 rounded-2xl border border-gray-100">
-      <p class="text-2xl font-bold text-[#A20513]">&lt; 30 min</p>
+      <p class="text-2xl font-bold text-[#A20513]">&lt; 2 Hours</p>
       <p class="text-sm text-gray-600 mt-1">Average Response Time</p>
     </div>
     <div class="text-center p-6 bg-gray-50 rounded-2xl border border-gray-100">
-      <p class="text-2xl font-bold text-[#A20513]">500+</p>
+      <p class="text-2xl font-bold text-[#A20513]">100+</p>
       <p class="text-sm text-gray-600 mt-1">Contractors Available</p>
     </div>
   </div>
@@ -177,5 +245,5 @@
 {% endblock content %}
 {% block extra_js %}
 <script>window.CONTACT_URLS = { submitEnquiry: '{% url "submit_enquiry" %}' };</script>
-<script src="{% static 'js/contact.js' %}"></script>
+<script src="{% static 'js/dist/contact.min.js' defer %} "></script>
 {% endblock extra_js %}

@@ -1,6 +1,102 @@
 
 {% extends "layout.html" %}
 
+
+{% block title %}
+Why Choose FireSeva | Verified Fire Safety Contractors
+{% endblock %}
+
+{% block description %}
+Learn why FireSeva is the trusted platform for finding verified fire safety contractors for fire NOC, fire alarm installation, fire extinguishers, hydrant systems, and AMC services across India.
+{% endblock %}
+
+{% block og_title %}
+Why Choose FireSeva | Verified Fire Safety Contractors
+{% endblock %}
+
+{% block og_description %}
+Discover why businesses and property owners choose FireSeva to connect with trusted fire safety professionals across India.
+{% endblock %}
+
+{% block twitter_title %}
+Why Choose FireSeva | Verified Fire Safety Contractors
+{% endblock %}
+
+{% block twitter_description %}
+Discover why FireSeva is India's trusted platform for fire safety services and verified contractors.
+{% endblock %}
+
+{% block extra_schema %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {
+      "@type":"ListItem",
+      "position":1,
+      "name":"Home",
+      "item":"https://fireseva.com/"
+    },
+    {
+      "@type":"ListItem",
+      "position":2,
+      "name":"Why FireSeva",
+      "item":"https://fireseva.com/why-fireseva/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"How does FireSeva verify contractors?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Every contractor submits GST registration, PAN card, trade licenses, insurance documents, and past project references. Our team verifies each document with the issuing authority and also conducts a physical inspection of their equipment and service quality before listing."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"What cities does FireSeva cover?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"We currently operate in Mumbai, Delhi, Bangalore, Pune, Hyderabad, Chennai, Kolkata, Ahmedabad, and 17 other cities. We're expanding to new locations every month. If your city isn't listed, contact us and we'll prioritise it."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How long does it take to get a Fire NOC?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Typical Fire NOC processing takes 15-30 days depending on your city and building complexity. Our compliance partners expedite the process by ensuring all documentation is correct from the start, minimising back-and-forth with authorities."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Is there a warranty on services?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. All services booked through FireSeva come with a service warranty and comprehensive insurance coverage. If any issues arise post-service, our support team mediates and ensures resolution."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How do I list my business on FireSeva?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Click the 'Be a Partner' button on our website or contact us directly. Our team will guide you through the verification process. Once approved, your business gets listed on India's fastest-growing fire safety platform."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <!-- Hero -->
@@ -26,7 +122,7 @@
     <p class="mt-4 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">From compliance to contracting — FireSeva is the only platform that gives you verified professionals, transparent pricing, and end-to-end fire safety management across India.</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4">
       <a href="{% url "find_contractors" %}" class="px-8 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Find Verified Contractors</a>
-      <a href="javascript:void(0)" onclick="openEnquiry()" class="px-8 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Get Free Consultation</a>
+      <button type="button" onclick="openEnquiry()" class="px-8 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Get Free Consultation</button>
     </div>
   </div>
 </section>
@@ -35,9 +131,9 @@
 <section class="py-8 bg-white border-b border-gray-100">
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex flex-wrap justify-center gap-6 sm:gap-10 text-sm font-medium text-gray-600">
-      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Govt Approved Marketplace</span>
-      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>500+ Verified Contractors</span>
-      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>15,000+ Audits Completed</span>
+      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Public Approved Marketplace</span>
+      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>100+ Verified Contractors</span>
+      <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>1k+ Audits Completed</span>
       <span class="inline-flex items-center gap-2"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>4.8★ Average Rating</span>
     </div>
   </div>
@@ -211,7 +307,7 @@
             <th class="text-left px-5 py-4 font-bold text-gray-900">Feature</th>
             <th class="text-center px-5 py-4 font-bold text-[#A20513]">FireSeva</th>
             <th class="text-center px-5 py-4 font-bold text-gray-400">Other Directories</th>
-            <th class="text-center px-5 py-4 font-bold text-gray-400">Google Search</th>
+            <th class="text-center px-5 py-4 font-bold text-gray-400">Online Search</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
@@ -356,7 +452,7 @@
     <p class="text-white/90 mt-4 text-lg max-w-2xl mx-auto">Join thousands of Indian businesses that trust FireSeva for their fire safety needs. Verified contractors, transparent pricing, and end-to-end compliance support — all in one platform.</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4">
       <a href="{% url "find_contractors" %}" class="px-8 py-3 bg-white text-[#A20513] hover:bg-gray-100 font-semibold rounded-xl transition">Find Verified Contractors</a>
-      <a href="javascript:void(0)" onclick="openEnquiry()" class="px-8 py-3 border-2 border-white text-white hover:bg-white/10 font-semibold rounded-xl transition">Get Free Consultation</a>
+      <button type="button" onclick="openEnquiry()" class="px-8 py-3 border-2 border-white text-white hover:bg-white/10 font-semibold rounded-xl transition">Get Free Consultation</button>
     </div>
   </div>
 </section>

@@ -1,0 +1,266 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+{{ service.meta_title|default:service.name }} | FireSeva
+{% endblock %}
+
+{% block description %}
+{{ service.meta_description|default:service.description|truncatechars:160 }}
+{% endblock %}
+
+{% block og_title %}
+{{ service.meta_title|default:service.name }} | FireSeva
+{% endblock %}
+
+{% block og_description %}
+{{ service.meta_description|default:service.description|truncatechars:160 }}
+{% endblock %}
+
+{% block twitter_title %}
+{{ service.meta_title|default:service.name }} | FireSeva
+{% endblock %}
+
+{% block twitter_description %}
+{{ service.meta_description|default:service.description|truncatechars:160 }}
+{% endblock %}
+
+{% block extra_schema %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"{{ service.name }}",
+  "url":"{{ request.build_absolute_uri }}",
+  "description":"{{ service.meta_description|default:service.description|striptags|escapejs }}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {
+      "@type":"ListItem",
+      "position":1,
+      "name":"Home",
+      "item":"https://fireseva.com/"
+    },
+    {
+      "@type":"ListItem",
+      "position":2,
+      "name":"Services",
+      "item":"https://fireseva.com/services/"
+    },
+    {
+      "@type":"ListItem",
+      "position":3,
+      "name":"{{ service.name }}",
+      "item":"{{ request.build_absolute_uri }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"{{ service.name }}",
+  "serviceType":"{{ service.name }}",
+  "provider":{
+    "@type":"Organization",
+    "name":"FireSeva",
+    "url":"https://fireseva.com"
+  },
+  "url":"{{ request.build_absolute_uri }}"
+}
+</script>
+{% endblock extra_schema %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="pt-28 pb-16" style="background-color: #C0DFEE;">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <nav aria-label="Breadcrumb" class="py-4">
+      <ol class="flex items-center gap-2 text-sm text-gray-600">
+        <li>
+          <a href="{% url 'home' %}" class="hover:text-orange-600 transition-colors">Home</a>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li>
+          <a href="{% url 'all_service' %}" class="hover:text-orange-600 transition-colors">Services</a>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li class="font-medium text-gray-900" aria-current="page">{{ service.name }}</li>
+      </ol>
+    </nav>
+    <span class="inline-flex items-center gap-1.5 bg-white/70 text-gray-700 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      {{ service.name }}
+    </span>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">{{ service.name }} Services Across India</h1>
+    <p class="mt-4 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">{{ service.one_line }}</p>
+    <div class="flex flex-wrap items-center justify-center gap-4 mt-6">
+      <a href="{% url 'find_contractors' %}?rental_item={{ service.slug }}" class="px-6 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Find Verified Contractors</a>
+      <button type="button" onclick="openEnquiry()" class="px-6 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Get Free Enquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- Service Detail -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <div class="flex-1">
+        <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm border border-gray-100 h-full flex items-center justify-center p-8">
+          {% if service.image %}
+          <img decoding="async" loading="lazy" src="{{ service.image.url }}" alt="{{ service.name }} - Fire Safety Service by FireSeva" class="w-full h-80 object-contain">
+          {% else %}
+          <div class="w-full h-80 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+            <svg class="w-28 h-28 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col justify-center">
+        <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium w-fit">Service Overview</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">{{ service.name }}</h2>
+        <p class="text-gray-700 mt-4 leading-relaxed">{{ service.description }}</p>
+       
+        <div class="flex flex-wrap gap-3 mt-6">
+          <a href="{% url 'find_contractors' %}?rental_item={{ service.slug }}" class="inline-flex items-center gap-1 px-5 py-2.5 bg-[#A20513] hover:bg-rose-700 text-white font-medium rounded-xl text-sm transition">
+            Find Contractors
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <button type="button" onclick="openEnquiry()" class="inline-flex items-center gap-1 px-5 py-2.5 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">
+            Enquire Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Available Cities -->
+<section class="py-16" style="background-color: #F4FAFF;">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Coverage</span>
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">{{ service.name }} Services Available In</h2>
+    <p class="text-gray-600 mt-2 max-w-3xl mx-auto">Our verified contractors provide {{ service.name|lower }} across major Indian cities. Select your city to find the best service providers near you.</p>
+    <div class="flex flex-wrap justify-center gap-3 mt-8">
+      {% if cities %}
+        {% for city in cities %}
+        <a href="{% url 'service_city' service.slug city.slug %}" class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm hover:border-[#A20513] hover:text-[#A20513] transition">{{ service.name }} in {{ city.name }}</a>
+        {% endfor %}
+      {% else %}
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Mumbai</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Delhi</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Bangalore</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Pune</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Hyderabad</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Chennai</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Kolkata</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Ahmedabad</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Jaipur</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Lucknow</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Surat</span>
+        <span class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">Chandigarh</span>
+      {% endif %}
+    </div>
+    <div class="mt-8">
+      <a href="{% url 'find_contractors' %}?rental_item={{ service.slug }}" class="inline-flex items-center gap-1 px-6 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">
+        View All Contractors in Your City
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Contractors -->
+{% if businesses %}
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Trusted Providers</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Top {{ service.name }} Contractors</h2>
+      <p class="text-gray-600 mt-2 max-w-3xl mx-auto">Verified and trusted professionals ready to serve you.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for business in businesses %}
+      <a href="{% url 'contractor_detail' business.slug %}" class="block group bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:bg-white transition">
+        <div class="w-16 h-16 bg-[#C0DFEE] rounded-xl flex items-center justify-center mb-4">
+          {% if business.image %}
+          <img decoding="async" loading="lazy" src="{{ business.image.url }}" alt="{{ business.name }}" class="w-full h-full object-cover rounded-xl">
+          {% else %}
+          <svg class="w-8 h-8 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          {% endif %}
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 group-hover:text-[#A20513] transition">{{ business.name }}</h3>
+        <p class="text-sm text-gray-500 mt-1">{{ business.city.name }}, {{ business.state.name }}</p>
+        <div class="flex items-center gap-1 mt-2">
+          <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <span class="text-sm font-medium text-gray-700">{{ business.rating }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-8">
+      <a href="{% url 'find_contractors' %}?rental_item={{ service.slug }}" class="inline-flex items-center gap-1 px-6 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">
+        View All Contractors
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Other Services / Categories -->
+{% if categories %}
+<section class="py-16" style="background-color: #F4FAFF;">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <span class="inline-block bg-[#C0DFEE] text-gray-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">More Services</span>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-3">Explore Other Fire Safety Services</h2>
+      <p class="text-gray-600 mt-2 max-w-3xl mx-auto">Fire safety is a comprehensive ecosystem. Explore our other services to ensure complete protection.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {% for cat in categories %}
+      <a href="{% url 'service_deatil' cat.slug %}" class="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#A20513] hover:shadow-md transition">
+        <div class="w-12 h-12 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-4 group-hover:text-[#A20513] transition">{{ cat.name }}</h3>
+        <p class="text-sm text-gray-600 mt-2">{{ cat.one_line|truncatewords:12 }}</p>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-8">
+      <a href="{% url 'all_service' %}" class="inline-flex items-center gap-1 px-6 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">
+        View All Services
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+
+
+<!-- CTA Section -->
+<section class="py-16" style="background-color: #C0DFEE;">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <div class="rounded-2xl p-8 md:p-12" style="background-color: #A20513;">
+      <h2 class="text-2xl md:text-3xl font-bold text-white">Need {{ service.name }} Services?</h2>
+      <p class="text-white/90 mt-4 text-base md:text-lg leading-relaxed">Get connected with verified {{ service.name|lower }} contractors in your city. Free consultation and quotes.</p>
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <button type="button" onclick="openEnquiry()" class="px-8 py-3 bg-white text-[#A20513] hover:bg-gray-100 font-semibold rounded-xl transition">Get Free Consultation</button>
+        <a href="{% url 'find_contractors' %}?rental_item={{ service.slug }}" class="px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-[#A20513] font-semibold rounded-xl transition">Browse Contractors</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

@@ -1,11 +1,125 @@
 {% extends "layout.html" %}
 {% load static %}
 
-{% block title %}All Fire Safety Services - FireSeva India {% endblock %}
-{% block meta %}
-<meta name="description" content="Explore all fire safety services by FireSeva: Fire alarm installation, extinguisher refilling, hydrant systems, fire audits, NOC assistance & more. Verified contractors across India.">
-<meta name="keywords" content="fire safety services, fire alarm installation, fire extinguisher refilling, fire hydrant system, fire audit, fire NOC, fire sprinklers, fire safety contractors India">
+{% block title %}
+All Fire Safety Services | FireSeva
 {% endblock %}
+
+{% block description %}
+Explore all fire safety services offered through FireSeva, including fire alarm installation, fire extinguisher services, fire NOC assistance, hydrant systems, sprinkler systems, AMC, and more.
+{% endblock %}
+
+{% block robots %}
+index, follow
+{% endblock %}
+
+{% block og_title %}
+All Fire Safety Services | FireSeva
+{% endblock %}
+
+{% block og_description %}
+Browse all fire safety services available on FireSeva.
+{% endblock %}
+
+{% block twitter_title %}
+All Fire Safety Services | FireSeva
+{% endblock %}
+
+{% block twitter_description %}
+Browse all fire safety services available on FireSeva.
+{% endblock %}
+{% block extra_schema %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"All Fire Safety Services",
+  "url":"{{ request.build_absolute_uri }}",
+  "description":"Browse all fire safety services available on FireSeva."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {
+      "@type":"ListItem",
+      "position":1,
+      "name":"Home",
+      "item":"https://fireseva.com/"
+    },
+    {
+      "@type":"ListItem",
+      "position":2,
+      "name":"Services",
+      "item":"{{ request.build_absolute_uri }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"CollectionPage",
+  "name":"All Fire Safety Services",
+  "url":"{{ request.build_absolute_uri }}",
+  "description":"Browse all fire safety services offered by FireSeva."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"Which fire safety service do I need for my commercial building?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Every commercial building in India requires a comprehensive fire safety setup as per NBC Part 4. Typically you will need fire alarm systems, fire extinguishers, hydrant systems, and a valid fire NOC. Start with a fire safety audit to identify gaps, then proceed with installations and maintenance as recommended."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How often should fire extinguishers be serviced?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Fire extinguishers should undergo visual inspection monthly, maintenance checks annually, and hydrostatic testing every 5-10 years depending on the type. FireSeva contractors provide scheduled maintenance plans to ensure your extinguishers are always ready."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"What is a Fire NOC and why is it important?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"A Fire NOC (No Objection Certificate) is a mandatory document issued by the fire department certifying that a building complies with fire safety norms. It is required for building approval, insurance renewal, and annual compliance. FireSeva consultants provide end-to-end NOC assistance to help you obtain and renew your certificate smoothly."
+      }
+    },
+     {
+      "@type":"Question",
+      "name":"Are FireSeva contractors verified and insured?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. Every contractor listed on FireSeva undergoes a multi-step verification process including document checks, license validation, and insurance verification. We ensure all service providers meet the highest standards of quality and compliance before they can serve customers on our platform."
+      }
+    },
+     {
+      "@type":"Question",
+      "name":"How do I get a quote for fire safety services?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Simply submit an enquiry through FireSeva with your requirements. Our platform will connect you with up to 3 verified contractors who will provide competitive quotes. You can compare their proposals, check ratings, and hire the best fit for your project."
+      }
+    } 
+  ]
+}
+</script>
+{% endblock extra_schema %}
+
+
+
+
 
 {% block content %}
 
@@ -35,7 +149,7 @@
     <p class="mt-4 text-base md:text-lg text-gray-700 max-w-3xl mx-auto">FireSeva connects you with verified fire safety contractors and consultants for installation, maintenance, auditing, and compliance services. Every service is delivered by certified professionals adhering to NBC 2024 and local fire department regulations.</p>
     <div class="flex flex-wrap items-center justify-center gap-4 mt-6">
       <a href="{% url 'find_contractors' %}" class="px-6 py-3 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Find Verified Contractors</a>
-      <a href="javascript:void(0)" onclick="openEnquiry()" class="px-6 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Get Free Enquiry</a>
+      <button type="button" onclick="openEnquiry()" class="px-6 py-3 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-semibold rounded-xl transition">Get Free Enquiry</button>
     </div>
   </div>
 </section>
@@ -55,7 +169,7 @@
         <div class="flex-1">
           <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm border border-gray-100 h-full flex items-center justify-center p-8">
             {% if service.image %}
-            <img src="{{ service.image.url }}" alt="{{ service.name }} - Fire Safety Service by FireSeva" class="w-full h-72 object-contain">
+            <img  decoding="async" loading="lazy" src="{{ service.image.url }}" alt="{{ service.name }} - Fire Safety Service by FireSeva" class="w-full h-72 object-contain">
             {% else %}
             <div class="w-full h-72 bg-[#C0DFEE] rounded-xl flex items-center justify-center">
               <svg class="w-24 h-24 text-[#A20513]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
@@ -76,13 +190,13 @@
           </div>
           {% endif %}
           <div class="flex flex-wrap gap-3 mt-6">
-            <a href="{% url 'find_contractors' %}" class="inline-flex items-center gap-1 px-5 py-2.5 bg-[#A20513] hover:bg-rose-700 text-white font-medium rounded-xl text-sm transition">
-              Find {{ service.name }} Experts
+            <a href="{% url 'service_deatil' service.slug %}" class="inline-flex items-center gap-1 px-5 py-2.5 bg-[#A20513] hover:bg-rose-700 text-white font-medium rounded-xl text-sm transition">
+              Learn more
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="javascript:void(0)" onclick="openEnquiry()" class="inline-flex items-center gap-1 px-5 py-2.5 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">
+            <button type="button" onclick="openEnquiry()" class="inline-flex items-center gap-1 px-5 py-2.5 border-2 border-[#A20513] text-[#A20513] hover:bg-[#A20513] hover:text-white font-medium rounded-xl text-sm transition">
               Enquire Now
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -179,7 +293,7 @@
         </ul>
       </div>
       <div class="flex-1 w-full max-w-lg">
-        <img src="https://i.pinimg.com/1200x/ce/69/c2/ce69c233ce9b1a14da9b86e8f4e0d09b.jpg" alt="Fire safety service guide - How to choose the right fire protection service for your building in India" class="w-full h-80 object-cover rounded-2xl shadow-lg">
+        <img  decoding="async" loading="lazy" src="{% static "hero.jpg" %}" alt="Fire safety service guide - How to choose the right fire protection service for your building in India" class="w-full h-80 object-cover rounded-2xl shadow-lg">
       </div>
     </div>
   </div>
@@ -215,7 +329,7 @@
       <h2 class="text-2xl md:text-3xl font-bold text-white">Need Help Choosing the Right Service?</h2>
       <p class="text-white/90 mt-4 text-base md:text-lg leading-relaxed">Our fire safety advisors are available 24/7 to help you assess your requirements and connect you with the best verified contractors in your area.</p>
       <div class="flex flex-wrap justify-center gap-4 mt-6">
-        <a href="javascript:void(0)" onclick="openEnquiry()" class="px-8 py-3 bg-white text-[#A20513] hover:bg-gray-100 font-semibold rounded-xl transition">Get Free Consultation</a>
+        <button type="button" onclick="openEnquiry()" class="px-8 py-3 bg-white text-[#A20513] hover:bg-gray-100 font-semibold rounded-xl transition">Get Free Consultation</button>
         <a href="{% url 'find_contractors' %}" class="px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-[#A20513] font-semibold rounded-xl transition">Browse Contractors</a>
       </div>
     </div>

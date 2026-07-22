@@ -1,20 +1,21 @@
-
+from dotenv import load_dotenv
 from pathlib import Path
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&89k3=8y1h=z+^ytyp9pf)tt^m0yjl&1%1s2!!$9%@+@q^^vv&'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -30,6 +31,7 @@ INSTALLED_APPS = [
     'smart_selects',
     'django_ckeditor_5',
     'dashboard',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -173,5 +175,7 @@ CKEDITOR_5_CONFIGS = {
 }
 
 
-RECAPTCHA_SITE_KEY = "6LdjFFMtAAAAAGoq3Hleci_HzLaIaPrt5wKwOHo6"
-RECAPTCHA_SECRET_KEY = "6LdjFFMtAAAAAOGtKS5WNxRSEkZMHcF7q4qe31Sr"
+TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
+TELEGRAM_CHAT_ID = int(os.environ.get('TELEGRAM_CHAT_ID'),0)
+RECAPTCHA_SITE_KEY = os.environ.get("RECAPTCHA_SITE_KEY")
+RECAPTCHA_SECRET_KEY = os.environ.get("RECAPTCHA_SECRET_KEY")

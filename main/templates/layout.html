@@ -9,9 +9,50 @@
 
     <!-- Primary SEO -->
     <title>{% block title %}FireSeva - India's Trusted Fire Safety Marketplace{% endblock %}</title>
+    <meta name="description" content="{% block description %}Find verified fire safety contractors for fire NOC, fire alarm installation, fire extinguisher, hydrant systems, and fire protection services across India.{% endblock %}">
     {% block meta %}{% endblock %}
-
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta name="author" content="FireSeva">
+    <meta name="theme-color" content="#DC2626">
+    <meta name="msapplication-TileColor" content="#DC2626">
+    <meta name="apple-mobile-web-app-title" content="FireSeva">
+    <meta property="og:site_name" content="FireSeva">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}FireSeva - Find Verified Fire Safety Contractors in India{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Find verified fire safety contractors across India for fire alarm installation, fire NOC, fire extinguisher, hydrant systems and more.{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% block og_image %}https://fireseva.com/static/logo.webp{% endblock %}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}FireSeva - Find Verified Fire Safety Contractors{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Find trusted fire safety contractors and fire protection services across India.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}https://fireseva.com/static/logo.webp{% endblock %}">
+    <script type="application/ld+json">
+    {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"FireSeva",
+    "url":"https://fireseva.com",
+    "logo":"https://fireseva.com/static/logo.webp"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"FireSeva",
+    "url":"https://fireseva.com"
+    }
+    </script>
+    {% block extra_schema %}{% endblock %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}"> 
      <style>
         .nav-link.active {
             color: #A20513;
@@ -25,7 +66,8 @@
             }
         }
      </style>
-     {% block extra_css %}{% endblock %}
+    {% block extra_css %}{% endblock %}
+
 </head>
 <body class="bg-white text-gray-900 antialiased">
 
@@ -33,7 +75,7 @@
     <nav class="fixed top-0 left-0 w-full bg-white backdrop-blur border-b border-gray-100 z-50">
         <div class="max-w-7xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between gap-6">
              <a href="{% url 'home' %}">
-                <h1 class="text-[#A20513] font-extrabold text-2xl hover:text-rose-700">FireSeva</h1>
+                <img decoding="async" loading="lazy" src="{% static 'logo.webp' %}" alt="FireSeva" class="h-12 w-auto">
             </a>
             <div class="hidden md:flex items-center gap-6 text-md font-semibold text-gray-600">
                 <a href="{% url "find_contractors" %}" class="nav-link hover:text-[#A20513] border-b-2 border-transparent hover:border-[#A20513] pb-1 transition{% if request.resolver_match.url_name == 'find_contractors' %} active{% endif %}">Find Contractors</a>
@@ -45,12 +87,12 @@
                 {% if request.user.is_authenticated %}
                     <a href="{% url 'manage_business' %}" class="px-4 py-2 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Dashboard</a>
                 {% else %}
-                    <a href="{% url 'login' %}?next={{ request.path }}" class="px-4 py-2 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Login</a>
+                    <a href="{% url 'login' %}?next={{ request.path }}" class="px-4 py-2 bg-[#A20513] hover:bg-rose-700 text-white font-semibold rounded-xl transition">Be a Partner</a>
                 {% endif %}
             </div>
             <div class="flex items-center gap-3">
                 <!-- Mobile menu toggle -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition" onclick="toggleMobileMenu()">
+                <button id="mobile-menu-btn" aria-label="Open navigation menu" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition" onclick="toggleMobileMenu()">
                     <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -86,16 +128,16 @@
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
           <div>
-            <h3 class="text-2xl font-extrabold text-white">FireSeva</h3>
+            <img decoding="async" loading="lazy" src="{% static 'logo.webp' %}" alt="FireSeva" class="h-12 w-auto brightness-0 invert bg-red-50">
             <p class="text-sm mt-3 leading-relaxed text-gray-400">India's leading platform for fire safety services and compliance management.</p>
             <div class="flex items-center gap-2 mt-4">
               <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-              <span class="text-xs text-gray-400">Govt Approved Safety Marketplace</span>
+              {% comment %} <span class="text-xs text-gray-400">Govt Approved Safety Marketplace</span> {% endcomment %}
             </div>
           </div>
 
           <div>
-            <h4 class="font-semibold text-white mb-4">Key Services</h4>
+            <p class="font-semibold text-white mb-4">Key Services</p>
             <ul class="space-y-2 text-sm">
               <li><a href="" class="hover:text-white transition">Fire Extinguisher Refilling</a></li>
               <li><a href="" class="hover:text-white transition">Fire Audit</a></li>
@@ -105,7 +147,7 @@
           </div>
 
           <div>
-            <h4 class="font-semibold text-white mb-4">Top Cities</h4>
+            <p class="font-semibold text-white mb-4">Top Cities</p>
             <ul class="space-y-2 text-sm">
               <li><a href="" class="hover:text-white transition">Mumbai</a></li>
               <li><a href="" class="hover:text-white transition">Delhi</a></li>
@@ -115,7 +157,7 @@
           </div>
 
           <div>
-            <h4 class="font-semibold text-white mb-4">For Partners</h4>
+            <p class="font-semibold text-white mb-4">For Partners</p>
             <ul class="space-y-2 text-sm">
               <li><a href="" class="hover:text-white transition">Contractor Login</a></li>
               <li><a href="" class="hover:text-white transition">Partner Registration</a></li>
@@ -126,7 +168,7 @@
 
         </div>
         <div class="border-t border-gray-800 mt-10 pt-6 text-center text-xs text-gray-500">
-          <p>&copy; 2024 FireSeva. All Rights Reserved. Govt Approved Safety Marketplace.</p>
+          <p>&copy; 2024 FireSeva. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
@@ -142,7 +184,7 @@
 
 <!-- WhatsApp Floating Popup -->
 <div id="whatsapp-popup" class="fixed bottom-6 right-6 z-50">
-    <button id="whatsapp-toggle" onclick="toggleWhatsApp()"
+    <button id="whatsapp-toggle" onclick="toggleWhatsApp() aria-label="Open WhatsApp chat""
         class="w-14 h-14 bg-[#A20513] hover:bg-rose-700 text-white rounded-full shadow-lg flex items-center justify-center transition transform hover:scale-110">
         <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -243,9 +285,9 @@
 
 
 
-<script src="{% static 'js/common.js' %}"> </script>
+<script src="{% static 'js/dist/common.min.js' defer %}"> </script>
 <script>window.APP_URLS = { submitEnquiry: '{% url "submit_enquiry" %}' };</script>
-<script src="{% static 'js/enquiry.js' %}"></script>
+<script src="{% static 'js/dist/enquiry.min.js' defer %}"></script>
 {% block extra_js %}{% endblock extra_js %}
 
 </body>

@@ -244,10 +244,8 @@ class Business(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     def get_absolute_url(self):
         return reverse(
-            "business_detail",
+            "contractor_detail",
             kwargs={
-                "city_slug": self.city.slug,
-                "category_slug": self.category.slug,
                 "business_slug": self.slug,
             },
         )
@@ -285,7 +283,7 @@ class ServiceCityPage(models.Model):
     slug = models.SlugField(unique=True,blank=True)
 
     content = CKEditor5Field("Content", config_name="default")
-
+    faq = CKEditor5Field("FAQ", config_name="default",blank=True)
     meta_title = models.CharField(max_length=200)
     meta_description = models.TextField()
     updated_at = models.DateTimeField(auto_now=True)
@@ -320,7 +318,7 @@ class Blogcategory(models.Model):
 class Blog(models.Model):
     # Core content
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True,max_length=200)
     content = CKEditor5Field("Content", config_name="default")
     category = models.ForeignKey(
         "Blogcategory",

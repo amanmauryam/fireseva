@@ -1,6 +1,35 @@
 {% extends "layout.html" %}
 {% load static %}
 
+{% block title %}
+Sign Up | FireSeva
+{% endblock %}
+
+{% block description %}
+Create your FireSeva account to register your fire safety business, manage your profile, receive customer enquiries, and grow your business.
+{% endblock %}
+
+{% block robots %}
+noindex, nofollow
+{% endblock %}
+
+{% block og_title %}
+Sign Up | FireSeva
+{% endblock %}
+
+{% block og_description %}
+Create your FireSeva account and start managing your fire safety business online.
+{% endblock %}
+
+{% block twitter_title %}
+Sign Up | FireSeva
+{% endblock %}
+
+{% block twitter_description %}
+Create your FireSeva account and connect with customers looking for fire safety services.
+{% endblock %}
+
+
 {% block extra_css %} <script src="https://www.google.com/recaptcha/api.js" async defer></script> {% endblock extra_css %}
 
 {% block content %}
@@ -10,7 +39,7 @@
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
             <div class="text-center mb-8">
                 <a href="{% url 'home' %}" >
-                    <h1 class="text-[#A20513] font-extrabold text-4xl">FireSeva</h1>
+                    <img decoding="async" loading="lazy" src="{% static 'logo.webp' %}" alt="FireSeva" class="h-12 w-auto mx-auto">
                 </a>
                 <h1 class="text-xl font-bold text-gray-900 mt-6">Create an account</h1>
                 <p class="text-sm text-gray-500 mt-1">Join FireSeva today</p>
